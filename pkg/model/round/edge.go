@@ -1,6 +1,6 @@
 package roundmodel
 
-import commonmodel "github.com/toureasy-sdk-go/pkg/model/model/common"
+import commonmodel "github.com/toureasy-sdk-go/pkg/model/common"
 
 type HasEdge struct {
 	EdgeConfig

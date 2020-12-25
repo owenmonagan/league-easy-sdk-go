@@ -1,7 +1,7 @@
 package tourmodel
 
 import (
-	commonmodel "github.com/toureasy-sdk-go/pkg/model/model/common"
+	commonmodel "github.com/toureasy-sdk-go/pkg/model/common"
 	"time"
 
 	"github.com/google/uuid"
@@ -20,6 +20,24 @@ func (tournament *Tournament) GenerateMissingFields() {
 	}
 	if tournament.ID == "" {
 		tournament.ID = uuid.New().String()
+	}
+	return
+}
+
+type CreateTournamentInput struct {
+	Tournament
+}
+
+type CreateTournamentOutput struct {
+	Tournament
+}
+
+func (req *CreateTournamentInput) GenerateMissingFields() {
+	if req.Seed != 0 {
+		req.Seed = time.Now().UnixNano()
+	}
+	if req.ID == "" {
+		req.ID = uuid.New().String()
 	}
 	return
 }

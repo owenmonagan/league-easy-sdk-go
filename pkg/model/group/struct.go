@@ -3,7 +3,7 @@ package groupmodel
 import (
 	arango "github.com/arangodb/go-driver"
 	"github.com/tjarratt/babble"
-	commonmodel "github.com/toureasy-sdk-go/pkg/model/model/common"
+	commonmodel "github.com/toureasy-sdk-go/pkg/model/common"
 )
 
 type GroupConfig struct {

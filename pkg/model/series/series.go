@@ -1,6 +1,6 @@
 package seriesmodel
 
-import commonmodel "github.com/toureasy-sdk-go/pkg/model/model/common"
+import commonmodel "github.com/toureasy-sdk-go/pkg/model/common"
 
 //Fixtures are just recursively smaller tables.
 

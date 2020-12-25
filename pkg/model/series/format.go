@@ -2,7 +2,7 @@ package seriesmodel
 
 import (
 	"fmt"
-	commonmodel "github.com/toureasy-sdk-go/pkg/model/model/common"
+	commonmodel "github.com/toureasy-sdk-go/pkg/model/common"
 )
 
 //type Request struct {
