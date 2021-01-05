@@ -32,20 +32,24 @@ spec:
             - name: ARANGODB_PASSWORD
               value: ""
             - name: ARANGODB_ENDPOINT
-              value: "http://toureasy-int.arangodb.svc:8529"
+              value: "{{ include "toureasy.arangodb.url" . }}"
             - name: ARANGODB_DATABASE_NAME
               value: "tournaments"
+            - name: JWT_SECRET
+              value: "some-secret-which-is-over-64-chars-long-but-is-this-long-enough?"
+            - name: SERVE_HTTP
+              value: "true"
           ports:
             - name: http
-              containerPort: 8080
+              containerPort: 11000
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /healthz
+              path: /api/v1/utl/health
               port: http
           readinessProbe:
             httpGet:
-              path: /readyz
+              path: /api/v1/utl/ready
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

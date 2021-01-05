@@ -1,7 +1,7 @@
 package rrmodel
 
 import (
-	commonmodel "github.com/toureasy-sdk-go/pkg/model/common"
+	commonmodel "github.com/owenmonagan/toureasy-sdk-go/pkg/model/common"
 )
 
 type Stage struct {

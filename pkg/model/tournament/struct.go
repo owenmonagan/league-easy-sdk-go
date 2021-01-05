@@ -1,7 +1,7 @@
 package tourmodel
 
 import (
-	commonmodel "github.com/toureasy-sdk-go/pkg/model/common"
+	commonmodel "github.com/owenmonagan/toureasy-sdk-go/pkg/model/common"
 	"time"
 
 	"github.com/google/uuid"

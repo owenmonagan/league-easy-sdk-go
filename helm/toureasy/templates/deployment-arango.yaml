@@ -1,7 +1,7 @@
 apiVersion: "database.arangodb.com/v1alpha"
 kind: "ArangoDeployment"
 metadata:
-  name: {{ include "toureasy.fullname" . }}
+  name: {{ include "toureasy.fullname.arangodb" . }}
 spec:
   mode: Cluster
   environment: Production
