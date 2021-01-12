@@ -11,6 +11,7 @@ import (
 	"github.com/go-openapi/strfmt"
 
 	"github.com/owenmonagan/toureasy-sdk-go/gen/client/entries"
+	"github.com/owenmonagan/toureasy-sdk-go/gen/client/entry"
 	"github.com/owenmonagan/toureasy-sdk-go/gen/client/tournaments"
 	"github.com/owenmonagan/toureasy-sdk-go/gen/client/utility"
 )
@@ -58,6 +59,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Tournament
 	cli := new(TournamentProto)
 	cli.Transport = transport
 	cli.Entries = entries.New(transport, formats)
+	cli.Entry = entry.New(transport, formats)
 	cli.Tournaments = tournaments.New(transport, formats)
 	cli.Utility = utility.New(transport, formats)
 	return cli
@@ -106,6 +108,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 type TournamentProto struct {
 	Entries entries.ClientService
 
+	Entry entry.ClientService
+
 	Tournaments tournaments.ClientService
 
 	Utility utility.ClientService
@@ -117,6 +121,7 @@ type TournamentProto struct {
 func (c *TournamentProto) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Entries.SetTransport(transport)
+	c.Entry.SetTransport(transport)
 	c.Tournaments.SetTransport(transport)
 	c.Utility.SetTransport(transport)
 }
