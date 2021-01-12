@@ -10,10 +10,15 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
+	"github.com/owenmonagan/toureasy-sdk-go/gen/client/entry"
+	"github.com/owenmonagan/toureasy-sdk-go/gen/client/round_robin"
 	"github.com/owenmonagan/toureasy-sdk-go/gen/client/series_format"
+	"github.com/owenmonagan/toureasy-sdk-go/gen/client/single_elimination"
+	"github.com/owenmonagan/toureasy-sdk-go/gen/client/tournaments"
+	"github.com/owenmonagan/toureasy-sdk-go/gen/client/utility"
 )
 
-// Default seriesformat proto HTTP client.
+// Default tournament proto HTTP client.
 var Default = NewHTTPClient(nil)
 
 const (
@@ -28,14 +33,14 @@ const (
 // DefaultSchemes are the default schemes found in Meta (info) section of spec file
 var DefaultSchemes = []string{"https"}
 
-// NewHTTPClient creates a new seriesformat proto HTTP client.
-func NewHTTPClient(formats strfmt.Registry) *SeriesformatProto {
+// NewHTTPClient creates a new tournament proto HTTP client.
+func NewHTTPClient(formats strfmt.Registry) *TournamentProto {
 	return NewHTTPClientWithConfig(formats, nil)
 }
 
-// NewHTTPClientWithConfig creates a new seriesformat proto HTTP client,
+// NewHTTPClientWithConfig creates a new tournament proto HTTP client,
 // using a customizable transport config.
-func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *SeriesformatProto {
+func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *TournamentProto {
 	// ensure nullable parameters have default
 	if cfg == nil {
 		cfg = DefaultTransportConfig()
@@ -46,16 +51,21 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *Ser
 	return New(transport, formats)
 }
 
-// New creates a new seriesformat proto client
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *SeriesformatProto {
+// New creates a new tournament proto client
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *TournamentProto {
 	// ensure nullable parameters have default
 	if formats == nil {
 		formats = strfmt.Default
 	}
 
-	cli := new(SeriesformatProto)
+	cli := new(TournamentProto)
 	cli.Transport = transport
+	cli.Entry = entry.New(transport, formats)
+	cli.RoundRobin = round_robin.New(transport, formats)
 	cli.SeriesFormat = series_format.New(transport, formats)
+	cli.SingleElimination = single_elimination.New(transport, formats)
+	cli.Tournaments = tournaments.New(transport, formats)
+	cli.Utility = utility.New(transport, formats)
 	return cli
 }
 
@@ -98,15 +108,30 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 	return cfg
 }
 
-// SeriesformatProto is a client for seriesformat proto
-type SeriesformatProto struct {
+// TournamentProto is a client for tournament proto
+type TournamentProto struct {
+	Entry entry.ClientService
+
+	RoundRobin round_robin.ClientService
+
 	SeriesFormat series_format.ClientService
+
+	SingleElimination single_elimination.ClientService
+
+	Tournaments tournaments.ClientService
+
+	Utility utility.ClientService
 
 	Transport runtime.ClientTransport
 }
 
 // SetTransport changes the transport on the client and all its subresources
-func (c *SeriesformatProto) SetTransport(transport runtime.ClientTransport) {
+func (c *TournamentProto) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
+	c.Entry.SetTransport(transport)
+	c.RoundRobin.SetTransport(transport)
 	c.SeriesFormat.SetTransport(transport)
+	c.SingleElimination.SetTransport(transport)
+	c.Tournaments.SetTransport(transport)
+	c.Utility.SetTransport(transport)
 }
