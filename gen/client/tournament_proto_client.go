@@ -11,7 +11,9 @@ import (
 	"github.com/go-openapi/strfmt"
 
 	"github.com/owenmonagan/toureasy-sdk-go/gen/client/entry"
+	"github.com/owenmonagan/toureasy-sdk-go/gen/client/game"
 	"github.com/owenmonagan/toureasy-sdk-go/gen/client/round_robin"
+	"github.com/owenmonagan/toureasy-sdk-go/gen/client/score_format"
 	"github.com/owenmonagan/toureasy-sdk-go/gen/client/series_format"
 	"github.com/owenmonagan/toureasy-sdk-go/gen/client/single_elimination"
 	"github.com/owenmonagan/toureasy-sdk-go/gen/client/tournaments"
@@ -61,7 +63,9 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Tournament
 	cli := new(TournamentProto)
 	cli.Transport = transport
 	cli.Entry = entry.New(transport, formats)
+	cli.Game = game.New(transport, formats)
 	cli.RoundRobin = round_robin.New(transport, formats)
+	cli.ScoreFormat = score_format.New(transport, formats)
 	cli.SeriesFormat = series_format.New(transport, formats)
 	cli.SingleElimination = single_elimination.New(transport, formats)
 	cli.Tournaments = tournaments.New(transport, formats)
@@ -112,7 +116,11 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 type TournamentProto struct {
 	Entry entry.ClientService
 
+	Game game.ClientService
+
 	RoundRobin round_robin.ClientService
+
+	ScoreFormat score_format.ClientService
 
 	SeriesFormat series_format.ClientService
 
@@ -129,7 +137,9 @@ type TournamentProto struct {
 func (c *TournamentProto) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Entry.SetTransport(transport)
+	c.Game.SetTransport(transport)
 	c.RoundRobin.SetTransport(transport)
+	c.ScoreFormat.SetTransport(transport)
 	c.SeriesFormat.SetTransport(transport)
 	c.SingleElimination.SetTransport(transport)
 	c.Tournaments.SetTransport(transport)
