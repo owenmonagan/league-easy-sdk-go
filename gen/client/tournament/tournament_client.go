@@ -29,6 +29,8 @@ type ClientService interface {
 
 	TournamentServiceCreate(params *TournamentServiceCreateParams) (*TournamentServiceCreateOK, error)
 
+	TournamentServiceDelete(params *TournamentServiceDeleteParams) (*TournamentServiceDeleteOK, error)
+
 	TournamentServiceQuery(params *TournamentServiceQueryParams) (*TournamentServiceQueryOK, error)
 
 	TournamentServiceUpdate(params *TournamentServiceUpdateParams) (*TournamentServiceUpdateOK, error)
@@ -87,7 +89,7 @@ func (a *Client) TournamentServiceCreate(params *TournamentServiceCreateParams) 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "TournamentService_Create",
 		Method:             "POST",
-		PathPattern:        "/api/v1/tournaments",
+		PathPattern:        "/api/v1/tournament",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -105,6 +107,41 @@ func (a *Client) TournamentServiceCreate(params *TournamentServiceCreateParams) 
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*TournamentServiceCreateDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+  TournamentServiceDelete deletes tournament
+
+  Delete a tournament when given an id
+*/
+func (a *Client) TournamentServiceDelete(params *TournamentServiceDeleteParams) (*TournamentServiceDeleteOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTournamentServiceDeleteParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "TournamentService_Delete",
+		Method:             "DELETE",
+		PathPattern:        "/api/v1/tournament/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TournamentServiceDeleteReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*TournamentServiceDeleteOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*TournamentServiceDeleteDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
@@ -157,7 +194,7 @@ func (a *Client) TournamentServiceUpdate(params *TournamentServiceUpdateParams) 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "TournamentService_Update",
 		Method:             "PATCH",
-		PathPattern:        "/api/v1/tournaments/{id}",
+		PathPattern:        "/api/v1/tournament/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -192,7 +229,7 @@ func (a *Client) TournamentServiceView(params *TournamentServiceViewParams) (*To
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "TournamentService_View",
 		Method:             "GET",
-		PathPattern:        "/api/v1/tournaments/{id}",
+		PathPattern:        "/api/v1/tournament/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

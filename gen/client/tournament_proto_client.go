@@ -16,12 +16,10 @@ import (
 	"github.com/owenmonagan/toureasy-sdk-go/gen/client/round"
 	"github.com/owenmonagan/toureasy-sdk-go/gen/client/round_robin"
 	"github.com/owenmonagan/toureasy-sdk-go/gen/client/score"
-	"github.com/owenmonagan/toureasy-sdk-go/gen/client/score_format"
 	"github.com/owenmonagan/toureasy-sdk-go/gen/client/series"
 	"github.com/owenmonagan/toureasy-sdk-go/gen/client/series_format"
 	"github.com/owenmonagan/toureasy-sdk-go/gen/client/single_elimination"
 	"github.com/owenmonagan/toureasy-sdk-go/gen/client/tournament"
-	"github.com/owenmonagan/toureasy-sdk-go/gen/client/tournaments"
 	"github.com/owenmonagan/toureasy-sdk-go/gen/client/utility"
 )
 
@@ -73,12 +71,10 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Tournament
 	cli.Round = round.New(transport, formats)
 	cli.RoundRobin = round_robin.New(transport, formats)
 	cli.Score = score.New(transport, formats)
-	cli.ScoreFormat = score_format.New(transport, formats)
 	cli.Series = series.New(transport, formats)
 	cli.SeriesFormat = series_format.New(transport, formats)
 	cli.SingleElimination = single_elimination.New(transport, formats)
 	cli.Tournament = tournament.New(transport, formats)
-	cli.Tournaments = tournaments.New(transport, formats)
 	cli.Utility = utility.New(transport, formats)
 	return cli
 }
@@ -136,8 +132,6 @@ type TournamentProto struct {
 
 	Score score.ClientService
 
-	ScoreFormat score_format.ClientService
-
 	Series series.ClientService
 
 	SeriesFormat series_format.ClientService
@@ -145,8 +139,6 @@ type TournamentProto struct {
 	SingleElimination single_elimination.ClientService
 
 	Tournament tournament.ClientService
-
-	Tournaments tournaments.ClientService
 
 	Utility utility.ClientService
 
@@ -162,11 +154,9 @@ func (c *TournamentProto) SetTransport(transport runtime.ClientTransport) {
 	c.Round.SetTransport(transport)
 	c.RoundRobin.SetTransport(transport)
 	c.Score.SetTransport(transport)
-	c.ScoreFormat.SetTransport(transport)
 	c.Series.SetTransport(transport)
 	c.SeriesFormat.SetTransport(transport)
 	c.SingleElimination.SetTransport(transport)
 	c.Tournament.SetTransport(transport)
-	c.Tournaments.SetTransport(transport)
 	c.Utility.SetTransport(transport)
 }

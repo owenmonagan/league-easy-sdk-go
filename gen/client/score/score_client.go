@@ -25,9 +25,46 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	ScoreServiceCreate(params *ScoreServiceCreateParams) (*ScoreServiceCreateOK, error)
+
 	ScoreServiceView(params *ScoreServiceViewParams) (*ScoreServiceViewOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+  ScoreServiceCreate adds a score
+
+  Add a score to the server.
+*/
+func (a *Client) ScoreServiceCreate(params *ScoreServiceCreateParams) (*ScoreServiceCreateOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewScoreServiceCreateParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ScoreService_Create",
+		Method:             "POST",
+		PathPattern:        "/api/v1/score",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ScoreServiceCreateReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ScoreServiceCreateOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*ScoreServiceCreateDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*

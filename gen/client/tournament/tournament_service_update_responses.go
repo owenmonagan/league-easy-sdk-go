@@ -55,7 +55,7 @@ type TournamentServiceUpdateOK struct {
 }
 
 func (o *TournamentServiceUpdateOK) Error() string {
-	return fmt.Sprintf("[PATCH /api/v1/tournaments/{id}][%d] tournamentServiceUpdateOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /api/v1/tournament/{id}][%d] tournamentServiceUpdateOK  %+v", 200, o.Payload)
 }
 
 func (o *TournamentServiceUpdateOK) GetPayload() *models.APITournamentResponse {
@@ -97,7 +97,7 @@ func (o *TournamentServiceUpdateDefault) Code() int {
 }
 
 func (o *TournamentServiceUpdateDefault) Error() string {
-	return fmt.Sprintf("[PATCH /api/v1/tournaments/{id}][%d] TournamentService_Update default  %+v", o._statusCode, o.Payload)
+	return fmt.Sprintf("[PATCH /api/v1/tournament/{id}][%d] TournamentService_Update default  %+v", o._statusCode, o.Payload)
 }
 
 func (o *TournamentServiceUpdateDefault) GetPayload() *models.GooglerpcStatus {
