@@ -43,6 +43,8 @@ type ClientService interface {
 
 	FormatSeriesServiceCreate(params *FormatSeriesServiceCreateParams) (*FormatSeriesServiceCreateOK, error)
 
+	FormatSeriesServiceDelete(params *FormatSeriesServiceDeleteParams) (*FormatSeriesServiceDeleteOK, error)
+
 	FormatSeriesServiceUpdate(params *FormatSeriesServiceUpdateParams) (*FormatSeriesServiceUpdateOK, error)
 
 	FormatSeriesServiceView(params *FormatSeriesServiceViewParams) (*FormatSeriesServiceViewOK, error)
@@ -68,6 +70,8 @@ type ClientService interface {
 	SeriesServiceView(params *SeriesServiceViewParams) (*SeriesServiceViewOK, error)
 
 	StageRoundRobinServiceCreate(params *StageRoundRobinServiceCreateParams) (*StageRoundRobinServiceCreateOK, error)
+
+	StageRoundRobinServiceDelete(params *StageRoundRobinServiceDeleteParams) (*StageRoundRobinServiceDeleteOK, error)
 
 	StageRoundRobinServiceQuery(params *StageRoundRobinServiceQueryParams) (*StageRoundRobinServiceQueryOK, error)
 
@@ -412,6 +416,41 @@ func (a *Client) FormatSeriesServiceCreate(params *FormatSeriesServiceCreatePara
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*FormatSeriesServiceCreateDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+  FormatSeriesServiceDelete deletes a series format
+
+  Delete a series format when given an id
+*/
+func (a *Client) FormatSeriesServiceDelete(params *FormatSeriesServiceDeleteParams) (*FormatSeriesServiceDeleteOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewFormatSeriesServiceDeleteParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "FormatSeriesService_Delete",
+		Method:             "DELETE",
+		PathPattern:        "/api/v1/format/series/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &FormatSeriesServiceDeleteReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*FormatSeriesServiceDeleteOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*FormatSeriesServiceDeleteDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
@@ -867,6 +906,41 @@ func (a *Client) StageRoundRobinServiceCreate(params *StageRoundRobinServiceCrea
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*StageRoundRobinServiceCreateDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+  StageRoundRobinServiceDelete deletes a round robin stage
+
+  Delete a round robin stage when given an id
+*/
+func (a *Client) StageRoundRobinServiceDelete(params *StageRoundRobinServiceDeleteParams) (*StageRoundRobinServiceDeleteOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewStageRoundRobinServiceDeleteParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "StageRoundRobinService_Delete",
+		Method:             "DELETE",
+		PathPattern:        "/api/v1/stage/roundrobin/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &StageRoundRobinServiceDeleteReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*StageRoundRobinServiceDeleteOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*StageRoundRobinServiceDeleteDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
