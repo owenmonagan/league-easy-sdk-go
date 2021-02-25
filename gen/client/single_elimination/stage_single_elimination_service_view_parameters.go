@@ -60,8 +60,8 @@ for the stage single elimination service view operation typically these are writ
 */
 type StageSingleEliminationServiceViewParams struct {
 
-	/*UUID*/
-	UUID string
+	/*ID*/
+	ID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -101,15 +101,15 @@ func (o *StageSingleEliminationServiceViewParams) SetHTTPClient(client *http.Cli
 	o.HTTPClient = client
 }
 
-// WithUUID adds the uuid to the stage single elimination service view params
-func (o *StageSingleEliminationServiceViewParams) WithUUID(uuid string) *StageSingleEliminationServiceViewParams {
-	o.SetUUID(uuid)
+// WithID adds the id to the stage single elimination service view params
+func (o *StageSingleEliminationServiceViewParams) WithID(id string) *StageSingleEliminationServiceViewParams {
+	o.SetID(id)
 	return o
 }
 
-// SetUUID adds the uuid to the stage single elimination service view params
-func (o *StageSingleEliminationServiceViewParams) SetUUID(uuid string) {
-	o.UUID = uuid
+// SetID adds the id to the stage single elimination service view params
+func (o *StageSingleEliminationServiceViewParams) SetID(id string) {
+	o.ID = id
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -120,8 +120,8 @@ func (o *StageSingleEliminationServiceViewParams) WriteToRequest(r runtime.Clien
 	}
 	var res []error
 
-	// path param uuid
-	if err := r.SetPathParam("uuid", o.UUID); err != nil {
+	// path param id
+	if err := r.SetPathParam("id", o.ID); err != nil {
 		return err
 	}
 

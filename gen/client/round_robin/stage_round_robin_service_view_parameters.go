@@ -60,8 +60,8 @@ for the stage round robin service view operation typically these are written to 
 */
 type StageRoundRobinServiceViewParams struct {
 
-	/*UUID*/
-	UUID string
+	/*ID*/
+	ID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -101,15 +101,15 @@ func (o *StageRoundRobinServiceViewParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUUID adds the uuid to the stage round robin service view params
-func (o *StageRoundRobinServiceViewParams) WithUUID(uuid string) *StageRoundRobinServiceViewParams {
-	o.SetUUID(uuid)
+// WithID adds the id to the stage round robin service view params
+func (o *StageRoundRobinServiceViewParams) WithID(id string) *StageRoundRobinServiceViewParams {
+	o.SetID(id)
 	return o
 }
 
-// SetUUID adds the uuid to the stage round robin service view params
-func (o *StageRoundRobinServiceViewParams) SetUUID(uuid string) {
-	o.UUID = uuid
+// SetID adds the id to the stage round robin service view params
+func (o *StageRoundRobinServiceViewParams) SetID(id string) {
+	o.ID = id
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -120,8 +120,8 @@ func (o *StageRoundRobinServiceViewParams) WriteToRequest(r runtime.ClientReques
 	}
 	var res []error
 
-	// path param uuid
-	if err := r.SetPathParam("uuid", o.UUID); err != nil {
+	// path param id
+	if err := r.SetPathParam("id", o.ID); err != nil {
 		return err
 	}
 

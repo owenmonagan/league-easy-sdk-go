@@ -22,11 +22,17 @@ type APIScore struct {
 	// final
 	Final bool `json:"final,omitempty"`
 
+	// id
+	ID string `json:"id,omitempty"`
+
 	// rows
 	Rows map[string]APIScoreRow `json:"rows,omitempty"`
 
 	// table
 	Table []*APIScoreRow `json:"table"`
+
+	// timestamps
+	Timestamps *APITimestamps `json:"timestamps,omitempty"`
 }
 
 // Validate validates this api score
@@ -38,6 +44,10 @@ func (m *APIScore) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateTable(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTimestamps(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -89,6 +99,24 @@ func (m *APIScore) validateTable(formats strfmt.Registry) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *APIScore) validateTimestamps(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Timestamps) { // not required
+		return nil
+	}
+
+	if m.Timestamps != nil {
+		if err := m.Timestamps.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("timestamps")
+			}
+			return err
+		}
 	}
 
 	return nil

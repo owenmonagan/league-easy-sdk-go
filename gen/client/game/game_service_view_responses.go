@@ -51,20 +51,20 @@ func NewGameServiceViewOK() *GameServiceViewOK {
 A successful response.
 */
 type GameServiceViewOK struct {
-	Payload *models.APIGame
+	Payload *models.APIGameResponse
 }
 
 func (o *GameServiceViewOK) Error() string {
-	return fmt.Sprintf("[GET /api/v1/game/{uuid}][%d] gameServiceViewOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /api/v1/game/{id}][%d] gameServiceViewOK  %+v", 200, o.Payload)
 }
 
-func (o *GameServiceViewOK) GetPayload() *models.APIGame {
+func (o *GameServiceViewOK) GetPayload() *models.APIGameResponse {
 	return o.Payload
 }
 
 func (o *GameServiceViewOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.APIGame)
+	o.Payload = new(models.APIGameResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -88,7 +88,7 @@ An unexpected error response.
 type GameServiceViewDefault struct {
 	_statusCode int
 
-	Payload *models.RPCStatus
+	Payload *models.GooglerpcStatus
 }
 
 // Code gets the status code for the game service view default response
@@ -97,16 +97,16 @@ func (o *GameServiceViewDefault) Code() int {
 }
 
 func (o *GameServiceViewDefault) Error() string {
-	return fmt.Sprintf("[GET /api/v1/game/{uuid}][%d] GameService_View default  %+v", o._statusCode, o.Payload)
+	return fmt.Sprintf("[GET /api/v1/game/{id}][%d] GameService_View default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *GameServiceViewDefault) GetPayload() *models.RPCStatus {
+func (o *GameServiceViewDefault) GetPayload() *models.GooglerpcStatus {
 	return o.Payload
 }
 
 func (o *GameServiceViewDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.RPCStatus)
+	o.Payload = new(models.GooglerpcStatus)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

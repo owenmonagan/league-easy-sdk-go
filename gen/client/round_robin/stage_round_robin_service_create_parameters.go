@@ -63,7 +63,7 @@ for the stage round robin service create operation typically these are written t
 type StageRoundRobinServiceCreateParams struct {
 
 	/*Body*/
-	Body *models.APIStageRoundRobinCreateRequest
+	Body *models.APIStageRoundRobinRequestBody
 
 	timeout    time.Duration
 	Context    context.Context
@@ -104,13 +104,13 @@ func (o *StageRoundRobinServiceCreateParams) SetHTTPClient(client *http.Client) 
 }
 
 // WithBody adds the body to the stage round robin service create params
-func (o *StageRoundRobinServiceCreateParams) WithBody(body *models.APIStageRoundRobinCreateRequest) *StageRoundRobinServiceCreateParams {
+func (o *StageRoundRobinServiceCreateParams) WithBody(body *models.APIStageRoundRobinRequestBody) *StageRoundRobinServiceCreateParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the stage round robin service create params
-func (o *StageRoundRobinServiceCreateParams) SetBody(body *models.APIStageRoundRobinCreateRequest) {
+func (o *StageRoundRobinServiceCreateParams) SetBody(body *models.APIStageRoundRobinRequestBody) {
 	o.Body = body
 }
 

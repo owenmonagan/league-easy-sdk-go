@@ -51,14 +51,14 @@ func NewStageRoundRobinServiceDeleteOK() *StageRoundRobinServiceDeleteOK {
 A successful response.
 */
 type StageRoundRobinServiceDeleteOK struct {
-	Payload models.APIStageRoundRobinDeleteResponse
+	Payload models.APIEmpty
 }
 
 func (o *StageRoundRobinServiceDeleteOK) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/stage/roundrobin/{uuid}][%d] stageRoundRobinServiceDeleteOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /api/v1/stage/roundrobin/{id}][%d] stageRoundRobinServiceDeleteOK  %+v", 200, o.Payload)
 }
 
-func (o *StageRoundRobinServiceDeleteOK) GetPayload() models.APIStageRoundRobinDeleteResponse {
+func (o *StageRoundRobinServiceDeleteOK) GetPayload() models.APIEmpty {
 	return o.Payload
 }
 
@@ -86,7 +86,7 @@ An unexpected error response.
 type StageRoundRobinServiceDeleteDefault struct {
 	_statusCode int
 
-	Payload *models.RPCStatus
+	Payload *models.GooglerpcStatus
 }
 
 // Code gets the status code for the stage round robin service delete default response
@@ -95,16 +95,16 @@ func (o *StageRoundRobinServiceDeleteDefault) Code() int {
 }
 
 func (o *StageRoundRobinServiceDeleteDefault) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/stage/roundrobin/{uuid}][%d] StageRoundRobinService_Delete default  %+v", o._statusCode, o.Payload)
+	return fmt.Sprintf("[DELETE /api/v1/stage/roundrobin/{id}][%d] StageRoundRobinService_Delete default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *StageRoundRobinServiceDeleteDefault) GetPayload() *models.RPCStatus {
+func (o *StageRoundRobinServiceDeleteDefault) GetPayload() *models.GooglerpcStatus {
 	return o.Payload
 }
 
 func (o *StageRoundRobinServiceDeleteDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.RPCStatus)
+	o.Payload = new(models.GooglerpcStatus)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

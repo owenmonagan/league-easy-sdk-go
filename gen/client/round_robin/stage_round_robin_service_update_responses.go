@@ -51,20 +51,20 @@ func NewStageRoundRobinServiceUpdateOK() *StageRoundRobinServiceUpdateOK {
 A successful response.
 */
 type StageRoundRobinServiceUpdateOK struct {
-	Payload *models.APIStageRoundRobin
+	Payload *models.APIStageRoundRobinResponse
 }
 
 func (o *StageRoundRobinServiceUpdateOK) Error() string {
-	return fmt.Sprintf("[PATCH /api/v1/stage/roundrobin/{uuid}][%d] stageRoundRobinServiceUpdateOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /api/v1/stage/rr/{id}][%d] stageRoundRobinServiceUpdateOK  %+v", 200, o.Payload)
 }
 
-func (o *StageRoundRobinServiceUpdateOK) GetPayload() *models.APIStageRoundRobin {
+func (o *StageRoundRobinServiceUpdateOK) GetPayload() *models.APIStageRoundRobinResponse {
 	return o.Payload
 }
 
 func (o *StageRoundRobinServiceUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.APIStageRoundRobin)
+	o.Payload = new(models.APIStageRoundRobinResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -88,7 +88,7 @@ An unexpected error response.
 type StageRoundRobinServiceUpdateDefault struct {
 	_statusCode int
 
-	Payload *models.RPCStatus
+	Payload *models.GooglerpcStatus
 }
 
 // Code gets the status code for the stage round robin service update default response
@@ -97,16 +97,16 @@ func (o *StageRoundRobinServiceUpdateDefault) Code() int {
 }
 
 func (o *StageRoundRobinServiceUpdateDefault) Error() string {
-	return fmt.Sprintf("[PATCH /api/v1/stage/roundrobin/{uuid}][%d] StageRoundRobinService_Update default  %+v", o._statusCode, o.Payload)
+	return fmt.Sprintf("[PATCH /api/v1/stage/rr/{id}][%d] StageRoundRobinService_Update default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *StageRoundRobinServiceUpdateDefault) GetPayload() *models.RPCStatus {
+func (o *StageRoundRobinServiceUpdateDefault) GetPayload() *models.GooglerpcStatus {
 	return o.Payload
 }
 
 func (o *StageRoundRobinServiceUpdateDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.RPCStatus)
+	o.Payload = new(models.GooglerpcStatus)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

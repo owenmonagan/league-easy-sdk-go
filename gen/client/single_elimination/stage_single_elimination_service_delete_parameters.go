@@ -60,8 +60,8 @@ for the stage single elimination service delete operation typically these are wr
 */
 type StageSingleEliminationServiceDeleteParams struct {
 
-	/*UUID*/
-	UUID string
+	/*ID*/
+	ID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -101,15 +101,15 @@ func (o *StageSingleEliminationServiceDeleteParams) SetHTTPClient(client *http.C
 	o.HTTPClient = client
 }
 
-// WithUUID adds the uuid to the stage single elimination service delete params
-func (o *StageSingleEliminationServiceDeleteParams) WithUUID(uuid string) *StageSingleEliminationServiceDeleteParams {
-	o.SetUUID(uuid)
+// WithID adds the id to the stage single elimination service delete params
+func (o *StageSingleEliminationServiceDeleteParams) WithID(id string) *StageSingleEliminationServiceDeleteParams {
+	o.SetID(id)
 	return o
 }
 
-// SetUUID adds the uuid to the stage single elimination service delete params
-func (o *StageSingleEliminationServiceDeleteParams) SetUUID(uuid string) {
-	o.UUID = uuid
+// SetID adds the id to the stage single elimination service delete params
+func (o *StageSingleEliminationServiceDeleteParams) SetID(id string) {
+	o.ID = id
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -120,8 +120,8 @@ func (o *StageSingleEliminationServiceDeleteParams) WriteToRequest(r runtime.Cli
 	}
 	var res []error
 
-	// path param uuid
-	if err := r.SetPathParam("uuid", o.UUID); err != nil {
+	// path param id
+	if err := r.SetPathParam("id", o.ID); err != nil {
 		return err
 	}
 

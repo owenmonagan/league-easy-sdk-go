@@ -63,7 +63,7 @@ for the stage single elimination service create operation typically these are wr
 type StageSingleEliminationServiceCreateParams struct {
 
 	/*Body*/
-	Body *models.APIStageSingleEliminationCreateRequest
+	Body *models.APIStageSingleEliminationRequestBody
 
 	timeout    time.Duration
 	Context    context.Context
@@ -104,13 +104,13 @@ func (o *StageSingleEliminationServiceCreateParams) SetHTTPClient(client *http.C
 }
 
 // WithBody adds the body to the stage single elimination service create params
-func (o *StageSingleEliminationServiceCreateParams) WithBody(body *models.APIStageSingleEliminationCreateRequest) *StageSingleEliminationServiceCreateParams {
+func (o *StageSingleEliminationServiceCreateParams) WithBody(body *models.APIStageSingleEliminationRequestBody) *StageSingleEliminationServiceCreateParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the stage single elimination service create params
-func (o *StageSingleEliminationServiceCreateParams) SetBody(body *models.APIStageSingleEliminationCreateRequest) {
+func (o *StageSingleEliminationServiceCreateParams) SetBody(body *models.APIStageSingleEliminationRequestBody) {
 	o.Body = body
 }
 

@@ -51,20 +51,20 @@ func NewEntryServiceUpdateOK() *EntryServiceUpdateOK {
 A successful response.
 */
 type EntryServiceUpdateOK struct {
-	Payload *models.APIEntry
+	Payload *models.APIEntryResponse
 }
 
 func (o *EntryServiceUpdateOK) Error() string {
-	return fmt.Sprintf("[PATCH /api/v1/entry/{uuid}][%d] entryServiceUpdateOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /api/v1/entry/{id}][%d] entryServiceUpdateOK  %+v", 200, o.Payload)
 }
 
-func (o *EntryServiceUpdateOK) GetPayload() *models.APIEntry {
+func (o *EntryServiceUpdateOK) GetPayload() *models.APIEntryResponse {
 	return o.Payload
 }
 
 func (o *EntryServiceUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.APIEntry)
+	o.Payload = new(models.APIEntryResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -88,7 +88,7 @@ An unexpected error response.
 type EntryServiceUpdateDefault struct {
 	_statusCode int
 
-	Payload *models.RPCStatus
+	Payload *models.GooglerpcStatus
 }
 
 // Code gets the status code for the entry service update default response
@@ -97,16 +97,16 @@ func (o *EntryServiceUpdateDefault) Code() int {
 }
 
 func (o *EntryServiceUpdateDefault) Error() string {
-	return fmt.Sprintf("[PATCH /api/v1/entry/{uuid}][%d] EntryService_Update default  %+v", o._statusCode, o.Payload)
+	return fmt.Sprintf("[PATCH /api/v1/entry/{id}][%d] EntryService_Update default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *EntryServiceUpdateDefault) GetPayload() *models.RPCStatus {
+func (o *EntryServiceUpdateDefault) GetPayload() *models.GooglerpcStatus {
 	return o.Payload
 }
 
 func (o *EntryServiceUpdateDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.RPCStatus)
+	o.Payload = new(models.GooglerpcStatus)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

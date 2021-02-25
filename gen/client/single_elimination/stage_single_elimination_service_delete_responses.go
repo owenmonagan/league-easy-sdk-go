@@ -51,14 +51,14 @@ func NewStageSingleEliminationServiceDeleteOK() *StageSingleEliminationServiceDe
 A successful response.
 */
 type StageSingleEliminationServiceDeleteOK struct {
-	Payload models.APIStageSingleEliminationDeleteResponse
+	Payload models.APIEmpty
 }
 
 func (o *StageSingleEliminationServiceDeleteOK) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/stage/singleelimination/{uuid}][%d] stageSingleEliminationServiceDeleteOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /api/v1/stage/se/{id}][%d] stageSingleEliminationServiceDeleteOK  %+v", 200, o.Payload)
 }
 
-func (o *StageSingleEliminationServiceDeleteOK) GetPayload() models.APIStageSingleEliminationDeleteResponse {
+func (o *StageSingleEliminationServiceDeleteOK) GetPayload() models.APIEmpty {
 	return o.Payload
 }
 
@@ -86,7 +86,7 @@ An unexpected error response.
 type StageSingleEliminationServiceDeleteDefault struct {
 	_statusCode int
 
-	Payload *models.RPCStatus
+	Payload *models.GooglerpcStatus
 }
 
 // Code gets the status code for the stage single elimination service delete default response
@@ -95,16 +95,16 @@ func (o *StageSingleEliminationServiceDeleteDefault) Code() int {
 }
 
 func (o *StageSingleEliminationServiceDeleteDefault) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/stage/singleelimination/{uuid}][%d] StageSingleEliminationService_Delete default  %+v", o._statusCode, o.Payload)
+	return fmt.Sprintf("[DELETE /api/v1/stage/se/{id}][%d] StageSingleEliminationService_Delete default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *StageSingleEliminationServiceDeleteDefault) GetPayload() *models.RPCStatus {
+func (o *StageSingleEliminationServiceDeleteDefault) GetPayload() *models.GooglerpcStatus {
 	return o.Payload
 }
 
 func (o *StageSingleEliminationServiceDeleteDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.RPCStatus)
+	o.Payload = new(models.GooglerpcStatus)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

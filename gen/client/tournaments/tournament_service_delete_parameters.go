@@ -60,8 +60,8 @@ for the tournament service delete operation typically these are written to a htt
 */
 type TournamentServiceDeleteParams struct {
 
-	/*UUID*/
-	UUID string
+	/*ID*/
+	ID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -101,15 +101,15 @@ func (o *TournamentServiceDeleteParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUUID adds the uuid to the tournament service delete params
-func (o *TournamentServiceDeleteParams) WithUUID(uuid string) *TournamentServiceDeleteParams {
-	o.SetUUID(uuid)
+// WithID adds the id to the tournament service delete params
+func (o *TournamentServiceDeleteParams) WithID(id string) *TournamentServiceDeleteParams {
+	o.SetID(id)
 	return o
 }
 
-// SetUUID adds the uuid to the tournament service delete params
-func (o *TournamentServiceDeleteParams) SetUUID(uuid string) {
-	o.UUID = uuid
+// SetID adds the id to the tournament service delete params
+func (o *TournamentServiceDeleteParams) SetID(id string) {
+	o.ID = id
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -120,8 +120,8 @@ func (o *TournamentServiceDeleteParams) WriteToRequest(r runtime.ClientRequest, 
 	}
 	var res []error
 
-	// path param uuid
-	if err := r.SetPathParam("uuid", o.UUID); err != nil {
+	// path param id
+	if err := r.SetPathParam("id", o.ID); err != nil {
 		return err
 	}
 

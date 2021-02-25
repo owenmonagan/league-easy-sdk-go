@@ -25,154 +25,154 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	SeriesFormatServiceCreate(params *SeriesFormatServiceCreateParams) (*SeriesFormatServiceCreateOK, error)
+	FormatSeriesServiceCreate(params *FormatSeriesServiceCreateParams) (*FormatSeriesServiceCreateOK, error)
 
-	SeriesFormatServiceDelete(params *SeriesFormatServiceDeleteParams) (*SeriesFormatServiceDeleteOK, error)
+	FormatSeriesServiceDelete(params *FormatSeriesServiceDeleteParams) (*FormatSeriesServiceDeleteOK, error)
 
-	SeriesFormatServiceUpdate(params *SeriesFormatServiceUpdateParams) (*SeriesFormatServiceUpdateOK, error)
+	FormatSeriesServiceUpdate(params *FormatSeriesServiceUpdateParams) (*FormatSeriesServiceUpdateOK, error)
 
-	SeriesFormatServiceView(params *SeriesFormatServiceViewParams) (*SeriesFormatServiceViewOK, error)
+	FormatSeriesServiceView(params *FormatSeriesServiceViewParams) (*FormatSeriesServiceViewOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-  SeriesFormatServiceCreate adds a series format
+  FormatSeriesServiceCreate adds a series format
 
   Add a series format to the server.
 */
-func (a *Client) SeriesFormatServiceCreate(params *SeriesFormatServiceCreateParams) (*SeriesFormatServiceCreateOK, error) {
+func (a *Client) FormatSeriesServiceCreate(params *FormatSeriesServiceCreateParams) (*FormatSeriesServiceCreateOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewSeriesFormatServiceCreateParams()
+		params = NewFormatSeriesServiceCreateParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "SeriesFormatService_Create",
+		ID:                 "FormatSeriesService_Create",
 		Method:             "POST",
 		PathPattern:        "/api/v1/format/series",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &SeriesFormatServiceCreateReader{formats: a.formats},
+		Reader:             &FormatSeriesServiceCreateReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*SeriesFormatServiceCreateOK)
+	success, ok := result.(*FormatSeriesServiceCreateOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*SeriesFormatServiceCreateDefault)
+	unexpectedSuccess := result.(*FormatSeriesServiceCreateDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-  SeriesFormatServiceDelete deletes a series format
+  FormatSeriesServiceDelete deletes a series format
 
   Delete a series format when given an id
 */
-func (a *Client) SeriesFormatServiceDelete(params *SeriesFormatServiceDeleteParams) (*SeriesFormatServiceDeleteOK, error) {
+func (a *Client) FormatSeriesServiceDelete(params *FormatSeriesServiceDeleteParams) (*FormatSeriesServiceDeleteOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewSeriesFormatServiceDeleteParams()
+		params = NewFormatSeriesServiceDeleteParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "SeriesFormatService_Delete",
+		ID:                 "FormatSeriesService_Delete",
 		Method:             "DELETE",
-		PathPattern:        "/api/v1/format/series/{uuid}",
+		PathPattern:        "/api/v1/format/series/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &SeriesFormatServiceDeleteReader{formats: a.formats},
+		Reader:             &FormatSeriesServiceDeleteReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*SeriesFormatServiceDeleteOK)
+	success, ok := result.(*FormatSeriesServiceDeleteOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*SeriesFormatServiceDeleteDefault)
+	unexpectedSuccess := result.(*FormatSeriesServiceDeleteDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-  SeriesFormatServiceUpdate updates a series format
+  FormatSeriesServiceUpdate updates a series format
 
   Update a series format when given an id
 */
-func (a *Client) SeriesFormatServiceUpdate(params *SeriesFormatServiceUpdateParams) (*SeriesFormatServiceUpdateOK, error) {
+func (a *Client) FormatSeriesServiceUpdate(params *FormatSeriesServiceUpdateParams) (*FormatSeriesServiceUpdateOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewSeriesFormatServiceUpdateParams()
+		params = NewFormatSeriesServiceUpdateParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "SeriesFormatService_Update",
+		ID:                 "FormatSeriesService_Update",
 		Method:             "PATCH",
-		PathPattern:        "/api/v1/format/series/{uuid}",
+		PathPattern:        "/api/v1/format/series/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &SeriesFormatServiceUpdateReader{formats: a.formats},
+		Reader:             &FormatSeriesServiceUpdateReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*SeriesFormatServiceUpdateOK)
+	success, ok := result.(*FormatSeriesServiceUpdateOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*SeriesFormatServiceUpdateDefault)
+	unexpectedSuccess := result.(*FormatSeriesServiceUpdateDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-  SeriesFormatServiceView views a series format
+  FormatSeriesServiceView views a series format
 
   View a series format when given an id
 */
-func (a *Client) SeriesFormatServiceView(params *SeriesFormatServiceViewParams) (*SeriesFormatServiceViewOK, error) {
+func (a *Client) FormatSeriesServiceView(params *FormatSeriesServiceViewParams) (*FormatSeriesServiceViewOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewSeriesFormatServiceViewParams()
+		params = NewFormatSeriesServiceViewParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "SeriesFormatService_View",
+		ID:                 "FormatSeriesService_View",
 		Method:             "GET",
-		PathPattern:        "/api/v1/format/series/{uuid}",
+		PathPattern:        "/api/v1/format/series/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &SeriesFormatServiceViewReader{formats: a.formats},
+		Reader:             &FormatSeriesServiceViewReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*SeriesFormatServiceViewOK)
+	success, ok := result.(*FormatSeriesServiceViewOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*SeriesFormatServiceViewDefault)
+	unexpectedSuccess := result.(*FormatSeriesServiceViewDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 

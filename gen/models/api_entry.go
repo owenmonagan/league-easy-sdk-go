@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -15,21 +16,45 @@ import (
 // swagger:model apiEntry
 type APIEntry struct {
 
-	// created at
-	CreatedAt string `json:"createdAt,omitempty"`
+	// data
+	Data map[string]string `json:"data,omitempty"`
 
-	// external Id
-	ExternalID string `json:"externalId,omitempty"`
+	// id
+	ID string `json:"id,omitempty"`
 
-	// updated at
-	UpdatedAt string `json:"updatedAt,omitempty"`
-
-	// uuid
-	UUID string `json:"uuid,omitempty"`
+	// timestamps
+	Timestamps *APITimestamps `json:"timestamps,omitempty"`
 }
 
 // Validate validates this api entry
 func (m *APIEntry) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateTimestamps(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *APIEntry) validateTimestamps(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Timestamps) { // not required
+		return nil
+	}
+
+	if m.Timestamps != nil {
+		if err := m.Timestamps.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("timestamps")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

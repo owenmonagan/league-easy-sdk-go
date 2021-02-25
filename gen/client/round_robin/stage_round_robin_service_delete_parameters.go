@@ -60,8 +60,8 @@ for the stage round robin service delete operation typically these are written t
 */
 type StageRoundRobinServiceDeleteParams struct {
 
-	/*UUID*/
-	UUID string
+	/*ID*/
+	ID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -101,15 +101,15 @@ func (o *StageRoundRobinServiceDeleteParams) SetHTTPClient(client *http.Client) 
 	o.HTTPClient = client
 }
 
-// WithUUID adds the uuid to the stage round robin service delete params
-func (o *StageRoundRobinServiceDeleteParams) WithUUID(uuid string) *StageRoundRobinServiceDeleteParams {
-	o.SetUUID(uuid)
+// WithID adds the id to the stage round robin service delete params
+func (o *StageRoundRobinServiceDeleteParams) WithID(id string) *StageRoundRobinServiceDeleteParams {
+	o.SetID(id)
 	return o
 }
 
-// SetUUID adds the uuid to the stage round robin service delete params
-func (o *StageRoundRobinServiceDeleteParams) SetUUID(uuid string) {
-	o.UUID = uuid
+// SetID adds the id to the stage round robin service delete params
+func (o *StageRoundRobinServiceDeleteParams) SetID(id string) {
+	o.ID = id
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -120,8 +120,8 @@ func (o *StageRoundRobinServiceDeleteParams) WriteToRequest(r runtime.ClientRequ
 	}
 	var res []error
 
-	// path param uuid
-	if err := r.SetPathParam("uuid", o.UUID); err != nil {
+	// path param id
+	if err := r.SetPathParam("id", o.ID); err != nil {
 		return err
 	}
 

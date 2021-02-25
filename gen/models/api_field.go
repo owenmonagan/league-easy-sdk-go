@@ -6,7 +6,6 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -24,40 +23,10 @@ type APIField struct {
 
 	// priority
 	Priority int32 `json:"priority,omitempty"`
-
-	// threshold
-	Threshold *APIThreshold `json:"threshold,omitempty"`
 }
 
 // Validate validates this api field
 func (m *APIField) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateThreshold(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *APIField) validateThreshold(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Threshold) { // not required
-		return nil
-	}
-
-	if m.Threshold != nil {
-		if err := m.Threshold.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("threshold")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 

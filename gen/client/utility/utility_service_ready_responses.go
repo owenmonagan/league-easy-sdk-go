@@ -51,14 +51,14 @@ func NewUtilityServiceReadyOK() *UtilityServiceReadyOK {
 A successful response.
 */
 type UtilityServiceReadyOK struct {
-	Payload models.APIResponse
+	Payload models.APIEmpty
 }
 
 func (o *UtilityServiceReadyOK) Error() string {
 	return fmt.Sprintf("[GET /api/v1/utl/ready][%d] utilityServiceReadyOK  %+v", 200, o.Payload)
 }
 
-func (o *UtilityServiceReadyOK) GetPayload() models.APIResponse {
+func (o *UtilityServiceReadyOK) GetPayload() models.APIEmpty {
 	return o.Payload
 }
 
@@ -86,7 +86,7 @@ An unexpected error response.
 type UtilityServiceReadyDefault struct {
 	_statusCode int
 
-	Payload *models.RPCStatus
+	Payload *models.GooglerpcStatus
 }
 
 // Code gets the status code for the utility service ready default response
@@ -98,13 +98,13 @@ func (o *UtilityServiceReadyDefault) Error() string {
 	return fmt.Sprintf("[GET /api/v1/utl/ready][%d] UtilityService_Ready default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *UtilityServiceReadyDefault) GetPayload() *models.RPCStatus {
+func (o *UtilityServiceReadyDefault) GetPayload() *models.GooglerpcStatus {
 	return o.Payload
 }
 
 func (o *UtilityServiceReadyDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.RPCStatus)
+	o.Payload = new(models.GooglerpcStatus)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

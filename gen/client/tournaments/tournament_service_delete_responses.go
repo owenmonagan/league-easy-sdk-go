@@ -51,14 +51,14 @@ func NewTournamentServiceDeleteOK() *TournamentServiceDeleteOK {
 A successful response.
 */
 type TournamentServiceDeleteOK struct {
-	Payload models.APITournamentDeleteResponse
+	Payload models.APIEmpty
 }
 
 func (o *TournamentServiceDeleteOK) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/tournaments/{uuid}][%d] tournamentServiceDeleteOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /api/v1/tournaments/{id}][%d] tournamentServiceDeleteOK  %+v", 200, o.Payload)
 }
 
-func (o *TournamentServiceDeleteOK) GetPayload() models.APITournamentDeleteResponse {
+func (o *TournamentServiceDeleteOK) GetPayload() models.APIEmpty {
 	return o.Payload
 }
 
@@ -86,7 +86,7 @@ An unexpected error response.
 type TournamentServiceDeleteDefault struct {
 	_statusCode int
 
-	Payload *models.RPCStatus
+	Payload *models.GooglerpcStatus
 }
 
 // Code gets the status code for the tournament service delete default response
@@ -95,16 +95,16 @@ func (o *TournamentServiceDeleteDefault) Code() int {
 }
 
 func (o *TournamentServiceDeleteDefault) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/tournaments/{uuid}][%d] TournamentService_Delete default  %+v", o._statusCode, o.Payload)
+	return fmt.Sprintf("[DELETE /api/v1/tournaments/{id}][%d] TournamentService_Delete default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *TournamentServiceDeleteDefault) GetPayload() *models.RPCStatus {
+func (o *TournamentServiceDeleteDefault) GetPayload() *models.GooglerpcStatus {
 	return o.Payload
 }
 
 func (o *TournamentServiceDeleteDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.RPCStatus)
+	o.Payload = new(models.GooglerpcStatus)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

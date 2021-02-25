@@ -50,7 +50,7 @@ func (a *Client) StageRoundRobinServiceCreate(params *StageRoundRobinServiceCrea
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "StageRoundRobinService_Create",
 		Method:             "POST",
-		PathPattern:        "/api/v1/stage/roundrobin",
+		PathPattern:        "/api/v1/stage/rr",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -85,7 +85,7 @@ func (a *Client) StageRoundRobinServiceDelete(params *StageRoundRobinServiceDele
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "StageRoundRobinService_Delete",
 		Method:             "DELETE",
-		PathPattern:        "/api/v1/stage/roundrobin/{uuid}",
+		PathPattern:        "/api/v1/stage/roundrobin/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -120,7 +120,7 @@ func (a *Client) StageRoundRobinServiceUpdate(params *StageRoundRobinServiceUpda
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "StageRoundRobinService_Update",
 		Method:             "PATCH",
-		PathPattern:        "/api/v1/stage/roundrobin/{uuid}",
+		PathPattern:        "/api/v1/stage/rr/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -155,7 +155,7 @@ func (a *Client) StageRoundRobinServiceView(params *StageRoundRobinServiceViewPa
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "StageRoundRobinService_View",
 		Method:             "GET",
-		PathPattern:        "/api/v1/stage/roundrobin/{uuid}",
+		PathPattern:        "/api/v1/stage/rr/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

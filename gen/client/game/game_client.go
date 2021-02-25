@@ -25,9 +25,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GameServiceActive(params *GameServiceActiveParams) (*GameServiceActiveOK, error)
-
-	GameServiceScore(params *GameServiceScoreParams) (*GameServiceScoreOK, error)
+	GameServiceQuery(params *GameServiceQueryParams) (*GameServiceQueryOK, error)
 
 	GameServiceView(params *GameServiceViewParams) (*GameServiceViewOK, error)
 
@@ -35,72 +33,37 @@ type ClientService interface {
 }
 
 /*
-  GameServiceActive returns the active games and their entries
+  GameServiceQuery queries for game
 
-  Returns the active games and their entries.
+  Query for game
 */
-func (a *Client) GameServiceActive(params *GameServiceActiveParams) (*GameServiceActiveOK, error) {
+func (a *Client) GameServiceQuery(params *GameServiceQueryParams) (*GameServiceQueryOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGameServiceActiveParams()
+		params = NewGameServiceQueryParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "GameService_Active",
+		ID:                 "GameService_Query",
 		Method:             "POST",
-		PathPattern:        "/api/v1/game/active",
+		PathPattern:        "/api/v1/game/query",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GameServiceActiveReader{formats: a.formats},
+		Reader:             &GameServiceQueryReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*GameServiceActiveOK)
+	success, ok := result.(*GameServiceQueryOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*GameServiceActiveDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
-  GameServiceScore posts a score for a game
-
-  Post a score for a game.
-*/
-func (a *Client) GameServiceScore(params *GameServiceScoreParams) (*GameServiceScoreOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGameServiceScoreParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "GameService_Score",
-		Method:             "POST",
-		PathPattern:        "/api/v1/game/score",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GameServiceScoreReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GameServiceScoreOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*GameServiceScoreDefault)
+	unexpectedSuccess := result.(*GameServiceQueryDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
@@ -118,7 +81,7 @@ func (a *Client) GameServiceView(params *GameServiceViewParams) (*GameServiceVie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GameService_View",
 		Method:             "GET",
-		PathPattern:        "/api/v1/game/{uuid}",
+		PathPattern:        "/api/v1/game/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

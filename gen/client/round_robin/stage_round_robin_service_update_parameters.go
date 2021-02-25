@@ -63,9 +63,9 @@ for the stage round robin service update operation typically these are written t
 type StageRoundRobinServiceUpdateParams struct {
 
 	/*Body*/
-	Body *models.APIStageRoundRobinUpdateRequest
-	/*UUID*/
-	UUID string
+	Body *models.APIStageRoundRobinRequestBody
+	/*ID*/
+	ID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -106,25 +106,25 @@ func (o *StageRoundRobinServiceUpdateParams) SetHTTPClient(client *http.Client) 
 }
 
 // WithBody adds the body to the stage round robin service update params
-func (o *StageRoundRobinServiceUpdateParams) WithBody(body *models.APIStageRoundRobinUpdateRequest) *StageRoundRobinServiceUpdateParams {
+func (o *StageRoundRobinServiceUpdateParams) WithBody(body *models.APIStageRoundRobinRequestBody) *StageRoundRobinServiceUpdateParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the stage round robin service update params
-func (o *StageRoundRobinServiceUpdateParams) SetBody(body *models.APIStageRoundRobinUpdateRequest) {
+func (o *StageRoundRobinServiceUpdateParams) SetBody(body *models.APIStageRoundRobinRequestBody) {
 	o.Body = body
 }
 
-// WithUUID adds the uuid to the stage round robin service update params
-func (o *StageRoundRobinServiceUpdateParams) WithUUID(uuid string) *StageRoundRobinServiceUpdateParams {
-	o.SetUUID(uuid)
+// WithID adds the id to the stage round robin service update params
+func (o *StageRoundRobinServiceUpdateParams) WithID(id string) *StageRoundRobinServiceUpdateParams {
+	o.SetID(id)
 	return o
 }
 
-// SetUUID adds the uuid to the stage round robin service update params
-func (o *StageRoundRobinServiceUpdateParams) SetUUID(uuid string) {
-	o.UUID = uuid
+// SetID adds the id to the stage round robin service update params
+func (o *StageRoundRobinServiceUpdateParams) SetID(id string) {
+	o.ID = id
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -141,8 +141,8 @@ func (o *StageRoundRobinServiceUpdateParams) WriteToRequest(r runtime.ClientRequ
 		}
 	}
 
-	// path param uuid
-	if err := r.SetPathParam("uuid", o.UUID); err != nil {
+	// path param id
+	if err := r.SetPathParam("id", o.ID); err != nil {
 		return err
 	}
 

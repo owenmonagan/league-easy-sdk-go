@@ -25,50 +25,15 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	EntryServiceCreateBatch(params *EntryServiceCreateBatchParams) (*EntryServiceCreateBatchOK, error)
-
 	EntryServiceDelete(params *EntryServiceDeleteParams) (*EntryServiceDeleteOK, error)
 
 	EntryServiceUpdate(params *EntryServiceUpdateParams) (*EntryServiceUpdateOK, error)
 
 	EntryServiceView(params *EntryServiceViewParams) (*EntryServiceViewOK, error)
 
+	EntryServiceWriteBatch(params *EntryServiceWriteBatchParams) (*EntryServiceWriteBatchOK, error)
+
 	SetTransport(transport runtime.ClientTransport)
-}
-
-/*
-  EntryServiceCreateBatch adds an entry
-
-  Add an entry to the server.
-*/
-func (a *Client) EntryServiceCreateBatch(params *EntryServiceCreateBatchParams) (*EntryServiceCreateBatchOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewEntryServiceCreateBatchParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "EntryService_CreateBatch",
-		Method:             "POST",
-		PathPattern:        "/api/v1/entries",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &EntryServiceCreateBatchReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*EntryServiceCreateBatchOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*EntryServiceCreateBatchDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
@@ -85,7 +50,7 @@ func (a *Client) EntryServiceDelete(params *EntryServiceDeleteParams) (*EntrySer
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "EntryService_Delete",
 		Method:             "DELETE",
-		PathPattern:        "/api/v1/entry/{uuid}",
+		PathPattern:        "/api/v1/entry/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -120,7 +85,7 @@ func (a *Client) EntryServiceUpdate(params *EntryServiceUpdateParams) (*EntrySer
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "EntryService_Update",
 		Method:             "PATCH",
-		PathPattern:        "/api/v1/entry/{uuid}",
+		PathPattern:        "/api/v1/entry/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -155,7 +120,7 @@ func (a *Client) EntryServiceView(params *EntryServiceViewParams) (*EntryService
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "EntryService_View",
 		Method:             "GET",
-		PathPattern:        "/api/v1/entry/{uuid}",
+		PathPattern:        "/api/v1/entry/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -173,6 +138,41 @@ func (a *Client) EntryServiceView(params *EntryServiceViewParams) (*EntryService
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*EntryServiceViewDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+  EntryServiceWriteBatch writes a batch of entries
+
+  existing entries with the same id will be overwritten
+*/
+func (a *Client) EntryServiceWriteBatch(params *EntryServiceWriteBatchParams) (*EntryServiceWriteBatchOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewEntryServiceWriteBatchParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "EntryService_WriteBatch",
+		Method:             "POST",
+		PathPattern:        "/api/v1/entries",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &EntryServiceWriteBatchReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*EntryServiceWriteBatchOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*EntryServiceWriteBatchDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 

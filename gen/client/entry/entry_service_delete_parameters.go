@@ -60,10 +60,8 @@ for the entry service delete operation typically these are written to a http.Req
 */
 type EntryServiceDeleteParams struct {
 
-	/*ExternalID*/
-	ExternalID *string
-	/*UUID*/
-	UUID string
+	/*ID*/
+	ID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -103,26 +101,15 @@ func (o *EntryServiceDeleteParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithExternalID adds the externalID to the entry service delete params
-func (o *EntryServiceDeleteParams) WithExternalID(externalID *string) *EntryServiceDeleteParams {
-	o.SetExternalID(externalID)
+// WithID adds the id to the entry service delete params
+func (o *EntryServiceDeleteParams) WithID(id string) *EntryServiceDeleteParams {
+	o.SetID(id)
 	return o
 }
 
-// SetExternalID adds the externalId to the entry service delete params
-func (o *EntryServiceDeleteParams) SetExternalID(externalID *string) {
-	o.ExternalID = externalID
-}
-
-// WithUUID adds the uuid to the entry service delete params
-func (o *EntryServiceDeleteParams) WithUUID(uuid string) *EntryServiceDeleteParams {
-	o.SetUUID(uuid)
-	return o
-}
-
-// SetUUID adds the uuid to the entry service delete params
-func (o *EntryServiceDeleteParams) SetUUID(uuid string) {
-	o.UUID = uuid
+// SetID adds the id to the entry service delete params
+func (o *EntryServiceDeleteParams) SetID(id string) {
+	o.ID = id
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -133,24 +120,8 @@ func (o *EntryServiceDeleteParams) WriteToRequest(r runtime.ClientRequest, reg s
 	}
 	var res []error
 
-	if o.ExternalID != nil {
-
-		// query param externalId
-		var qrExternalID string
-		if o.ExternalID != nil {
-			qrExternalID = *o.ExternalID
-		}
-		qExternalID := qrExternalID
-		if qExternalID != "" {
-			if err := r.SetQueryParam("externalId", qExternalID); err != nil {
-				return err
-			}
-		}
-
-	}
-
-	// path param uuid
-	if err := r.SetPathParam("uuid", o.UUID); err != nil {
+	// path param id
+	if err := r.SetPathParam("id", o.ID); err != nil {
 		return err
 	}
 

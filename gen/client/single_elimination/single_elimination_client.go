@@ -50,7 +50,7 @@ func (a *Client) StageSingleEliminationServiceCreate(params *StageSingleEliminat
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "StageSingleEliminationService_Create",
 		Method:             "POST",
-		PathPattern:        "/api/v1/stage/singleelimination",
+		PathPattern:        "/api/v1/stage/se",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -85,7 +85,7 @@ func (a *Client) StageSingleEliminationServiceDelete(params *StageSingleEliminat
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "StageSingleEliminationService_Delete",
 		Method:             "DELETE",
-		PathPattern:        "/api/v1/stage/singleelimination/{uuid}",
+		PathPattern:        "/api/v1/stage/se/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -120,7 +120,7 @@ func (a *Client) StageSingleEliminationServiceUpdate(params *StageSingleEliminat
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "StageSingleEliminationService_Update",
 		Method:             "PATCH",
-		PathPattern:        "/api/v1/stage/singleelimination/{uuid}",
+		PathPattern:        "/api/v1/stage/se/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -155,7 +155,7 @@ func (a *Client) StageSingleEliminationServiceView(params *StageSingleEliminatio
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "StageSingleEliminationService_View",
 		Method:             "GET",
-		PathPattern:        "/api/v1/stage/singleelimination/{uuid}",
+		PathPattern:        "/api/v1/stage/se/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

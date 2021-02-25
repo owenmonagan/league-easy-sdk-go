@@ -51,14 +51,14 @@ func NewEntryServiceDeleteOK() *EntryServiceDeleteOK {
 A successful response.
 */
 type EntryServiceDeleteOK struct {
-	Payload models.APIEntryDeleteResponse
+	Payload models.APIEmpty
 }
 
 func (o *EntryServiceDeleteOK) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/entry/{uuid}][%d] entryServiceDeleteOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /api/v1/entry/{id}][%d] entryServiceDeleteOK  %+v", 200, o.Payload)
 }
 
-func (o *EntryServiceDeleteOK) GetPayload() models.APIEntryDeleteResponse {
+func (o *EntryServiceDeleteOK) GetPayload() models.APIEmpty {
 	return o.Payload
 }
 
@@ -86,7 +86,7 @@ An unexpected error response.
 type EntryServiceDeleteDefault struct {
 	_statusCode int
 
-	Payload *models.RPCStatus
+	Payload *models.GooglerpcStatus
 }
 
 // Code gets the status code for the entry service delete default response
@@ -95,16 +95,16 @@ func (o *EntryServiceDeleteDefault) Code() int {
 }
 
 func (o *EntryServiceDeleteDefault) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/entry/{uuid}][%d] EntryService_Delete default  %+v", o._statusCode, o.Payload)
+	return fmt.Sprintf("[DELETE /api/v1/entry/{id}][%d] EntryService_Delete default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *EntryServiceDeleteDefault) GetPayload() *models.RPCStatus {
+func (o *EntryServiceDeleteDefault) GetPayload() *models.GooglerpcStatus {
 	return o.Payload
 }
 
 func (o *EntryServiceDeleteDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.RPCStatus)
+	o.Payload = new(models.GooglerpcStatus)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -51,20 +51,20 @@ func NewEntryServiceViewOK() *EntryServiceViewOK {
 A successful response.
 */
 type EntryServiceViewOK struct {
-	Payload *models.APIEntry
+	Payload *models.APIEntryResponse
 }
 
 func (o *EntryServiceViewOK) Error() string {
-	return fmt.Sprintf("[GET /api/v1/entry/{uuid}][%d] entryServiceViewOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /api/v1/entry/{id}][%d] entryServiceViewOK  %+v", 200, o.Payload)
 }
 
-func (o *EntryServiceViewOK) GetPayload() *models.APIEntry {
+func (o *EntryServiceViewOK) GetPayload() *models.APIEntryResponse {
 	return o.Payload
 }
 
 func (o *EntryServiceViewOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.APIEntry)
+	o.Payload = new(models.APIEntryResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -88,7 +88,7 @@ An unexpected error response.
 type EntryServiceViewDefault struct {
 	_statusCode int
 
-	Payload *models.RPCStatus
+	Payload *models.GooglerpcStatus
 }
 
 // Code gets the status code for the entry service view default response
@@ -97,16 +97,16 @@ func (o *EntryServiceViewDefault) Code() int {
 }
 
 func (o *EntryServiceViewDefault) Error() string {
-	return fmt.Sprintf("[GET /api/v1/entry/{uuid}][%d] EntryService_View default  %+v", o._statusCode, o.Payload)
+	return fmt.Sprintf("[GET /api/v1/entry/{id}][%d] EntryService_View default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *EntryServiceViewDefault) GetPayload() *models.RPCStatus {
+func (o *EntryServiceViewDefault) GetPayload() *models.GooglerpcStatus {
 	return o.Payload
 }
 
 func (o *EntryServiceViewDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.RPCStatus)
+	o.Payload = new(models.GooglerpcStatus)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

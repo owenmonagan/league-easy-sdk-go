@@ -25,56 +25,15 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	TournamentServiceCreate(params *TournamentServiceCreateParams) (*TournamentServiceCreateOK, error)
-
 	TournamentServiceDelete(params *TournamentServiceDeleteParams) (*TournamentServiceDeleteOK, error)
-
-	TournamentServiceUpdate(params *TournamentServiceUpdateParams) (*TournamentServiceUpdateOK, error)
-
-	TournamentServiceView(params *TournamentServiceViewParams) (*TournamentServiceViewOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-  TournamentServiceCreate adds a tournament
+  TournamentServiceDelete deletes tournament
 
-  Add a tournament to the server.
-*/
-func (a *Client) TournamentServiceCreate(params *TournamentServiceCreateParams) (*TournamentServiceCreateOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewTournamentServiceCreateParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "TournamentService_Create",
-		Method:             "POST",
-		PathPattern:        "/api/v1/tournaments",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &TournamentServiceCreateReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*TournamentServiceCreateOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*TournamentServiceCreateDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
-  TournamentServiceDelete updates a tournament
-
-  Update a tournament when given an id
+  Delete a tournament when given an id
 */
 func (a *Client) TournamentServiceDelete(params *TournamentServiceDeleteParams) (*TournamentServiceDeleteOK, error) {
 	// TODO: Validate the params before sending
@@ -85,7 +44,7 @@ func (a *Client) TournamentServiceDelete(params *TournamentServiceDeleteParams) 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "TournamentService_Delete",
 		Method:             "DELETE",
-		PathPattern:        "/api/v1/tournaments/{uuid}",
+		PathPattern:        "/api/v1/tournaments/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -103,76 +62,6 @@ func (a *Client) TournamentServiceDelete(params *TournamentServiceDeleteParams) 
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*TournamentServiceDeleteDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
-  TournamentServiceUpdate updates a tournament
-
-  Update a tournament when given an id
-*/
-func (a *Client) TournamentServiceUpdate(params *TournamentServiceUpdateParams) (*TournamentServiceUpdateOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewTournamentServiceUpdateParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "TournamentService_Update",
-		Method:             "PATCH",
-		PathPattern:        "/api/v1/tournaments/{uuid}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &TournamentServiceUpdateReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*TournamentServiceUpdateOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*TournamentServiceUpdateDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
-  TournamentServiceView views a tournament
-
-  View a tournament when given an id
-*/
-func (a *Client) TournamentServiceView(params *TournamentServiceViewParams) (*TournamentServiceViewOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewTournamentServiceViewParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "TournamentService_View",
-		Method:             "GET",
-		PathPattern:        "/api/v1/tournaments/{uuid}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &TournamentServiceViewReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*TournamentServiceViewOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*TournamentServiceViewDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 

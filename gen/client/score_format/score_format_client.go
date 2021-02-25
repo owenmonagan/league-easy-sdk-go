@@ -25,154 +25,43 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	ScoreFormatServiceCreate(params *ScoreFormatServiceCreateParams) (*ScoreFormatServiceCreateOK, error)
-
-	ScoreFormatServiceDelete(params *ScoreFormatServiceDeleteParams) (*ScoreFormatServiceDeleteOK, error)
-
-	ScoreFormatServiceUpdate(params *ScoreFormatServiceUpdateParams) (*ScoreFormatServiceUpdateOK, error)
-
-	ScoreFormatServiceView(params *ScoreFormatServiceViewParams) (*ScoreFormatServiceViewOK, error)
+	ScoreServiceCreate(params *ScoreServiceCreateParams) (*ScoreServiceCreateOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-  ScoreFormatServiceCreate adds a score format
+  ScoreServiceCreate adds a score
 
-  Add a score format to the server.
+  Add a score to the server.
 */
-func (a *Client) ScoreFormatServiceCreate(params *ScoreFormatServiceCreateParams) (*ScoreFormatServiceCreateOK, error) {
+func (a *Client) ScoreServiceCreate(params *ScoreServiceCreateParams) (*ScoreServiceCreateOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewScoreFormatServiceCreateParams()
+		params = NewScoreServiceCreateParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "ScoreFormatService_Create",
+		ID:                 "ScoreService_Create",
 		Method:             "POST",
-		PathPattern:        "/api/v1/format/score",
+		PathPattern:        "/api/v1/score",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ScoreFormatServiceCreateReader{formats: a.formats},
+		Reader:             &ScoreServiceCreateReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*ScoreFormatServiceCreateOK)
+	success, ok := result.(*ScoreServiceCreateOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*ScoreFormatServiceCreateDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
-  ScoreFormatServiceDelete deletes a score format
-
-  Delete a score format when given an id
-*/
-func (a *Client) ScoreFormatServiceDelete(params *ScoreFormatServiceDeleteParams) (*ScoreFormatServiceDeleteOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewScoreFormatServiceDeleteParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "ScoreFormatService_Delete",
-		Method:             "DELETE",
-		PathPattern:        "/api/v1/format/score/{uuid}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &ScoreFormatServiceDeleteReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*ScoreFormatServiceDeleteOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*ScoreFormatServiceDeleteDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
-  ScoreFormatServiceUpdate updates a score format
-
-  Update a score format when given an id
-*/
-func (a *Client) ScoreFormatServiceUpdate(params *ScoreFormatServiceUpdateParams) (*ScoreFormatServiceUpdateOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewScoreFormatServiceUpdateParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "ScoreFormatService_Update",
-		Method:             "PATCH",
-		PathPattern:        "/api/v1/format/score/{uuid}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &ScoreFormatServiceUpdateReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*ScoreFormatServiceUpdateOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*ScoreFormatServiceUpdateDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
-  ScoreFormatServiceView views a score format
-
-  View a score format when given an id
-*/
-func (a *Client) ScoreFormatServiceView(params *ScoreFormatServiceViewParams) (*ScoreFormatServiceViewOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewScoreFormatServiceViewParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "ScoreFormatService_View",
-		Method:             "GET",
-		PathPattern:        "/api/v1/format/score/{uuid}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &ScoreFormatServiceViewReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*ScoreFormatServiceViewOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*ScoreFormatServiceViewDefault)
+	unexpectedSuccess := result.(*ScoreServiceCreateDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 

@@ -60,10 +60,8 @@ for the entry service view operation typically these are written to a http.Reque
 */
 type EntryServiceViewParams struct {
 
-	/*ExternalID*/
-	ExternalID *string
-	/*UUID*/
-	UUID string
+	/*ID*/
+	ID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -103,26 +101,15 @@ func (o *EntryServiceViewParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithExternalID adds the externalID to the entry service view params
-func (o *EntryServiceViewParams) WithExternalID(externalID *string) *EntryServiceViewParams {
-	o.SetExternalID(externalID)
+// WithID adds the id to the entry service view params
+func (o *EntryServiceViewParams) WithID(id string) *EntryServiceViewParams {
+	o.SetID(id)
 	return o
 }
 
-// SetExternalID adds the externalId to the entry service view params
-func (o *EntryServiceViewParams) SetExternalID(externalID *string) {
-	o.ExternalID = externalID
-}
-
-// WithUUID adds the uuid to the entry service view params
-func (o *EntryServiceViewParams) WithUUID(uuid string) *EntryServiceViewParams {
-	o.SetUUID(uuid)
-	return o
-}
-
-// SetUUID adds the uuid to the entry service view params
-func (o *EntryServiceViewParams) SetUUID(uuid string) {
-	o.UUID = uuid
+// SetID adds the id to the entry service view params
+func (o *EntryServiceViewParams) SetID(id string) {
+	o.ID = id
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -133,24 +120,8 @@ func (o *EntryServiceViewParams) WriteToRequest(r runtime.ClientRequest, reg str
 	}
 	var res []error
 
-	if o.ExternalID != nil {
-
-		// query param externalId
-		var qrExternalID string
-		if o.ExternalID != nil {
-			qrExternalID = *o.ExternalID
-		}
-		qExternalID := qrExternalID
-		if qExternalID != "" {
-			if err := r.SetQueryParam("externalId", qExternalID); err != nil {
-				return err
-			}
-		}
-
-	}
-
-	// path param uuid
-	if err := r.SetPathParam("uuid", o.UUID); err != nil {
+	// path param id
+	if err := r.SetPathParam("id", o.ID); err != nil {
 		return err
 	}
 

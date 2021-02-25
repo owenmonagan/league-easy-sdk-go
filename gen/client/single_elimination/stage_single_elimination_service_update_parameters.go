@@ -63,9 +63,9 @@ for the stage single elimination service update operation typically these are wr
 type StageSingleEliminationServiceUpdateParams struct {
 
 	/*Body*/
-	Body *models.APIStageSingleEliminationUpdateRequest
-	/*UUID*/
-	UUID string
+	Body *models.APIStageSingleEliminationRequestBody
+	/*ID*/
+	ID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -106,25 +106,25 @@ func (o *StageSingleEliminationServiceUpdateParams) SetHTTPClient(client *http.C
 }
 
 // WithBody adds the body to the stage single elimination service update params
-func (o *StageSingleEliminationServiceUpdateParams) WithBody(body *models.APIStageSingleEliminationUpdateRequest) *StageSingleEliminationServiceUpdateParams {
+func (o *StageSingleEliminationServiceUpdateParams) WithBody(body *models.APIStageSingleEliminationRequestBody) *StageSingleEliminationServiceUpdateParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the stage single elimination service update params
-func (o *StageSingleEliminationServiceUpdateParams) SetBody(body *models.APIStageSingleEliminationUpdateRequest) {
+func (o *StageSingleEliminationServiceUpdateParams) SetBody(body *models.APIStageSingleEliminationRequestBody) {
 	o.Body = body
 }
 
-// WithUUID adds the uuid to the stage single elimination service update params
-func (o *StageSingleEliminationServiceUpdateParams) WithUUID(uuid string) *StageSingleEliminationServiceUpdateParams {
-	o.SetUUID(uuid)
+// WithID adds the id to the stage single elimination service update params
+func (o *StageSingleEliminationServiceUpdateParams) WithID(id string) *StageSingleEliminationServiceUpdateParams {
+	o.SetID(id)
 	return o
 }
 
-// SetUUID adds the uuid to the stage single elimination service update params
-func (o *StageSingleEliminationServiceUpdateParams) SetUUID(uuid string) {
-	o.UUID = uuid
+// SetID adds the id to the stage single elimination service update params
+func (o *StageSingleEliminationServiceUpdateParams) SetID(id string) {
+	o.ID = id
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -141,8 +141,8 @@ func (o *StageSingleEliminationServiceUpdateParams) WriteToRequest(r runtime.Cli
 		}
 	}
 
-	// path param uuid
-	if err := r.SetPathParam("uuid", o.UUID); err != nil {
+	// path param id
+	if err := r.SetPathParam("id", o.ID); err != nil {
 		return err
 	}
 

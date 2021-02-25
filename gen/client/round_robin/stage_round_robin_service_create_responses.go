@@ -51,20 +51,20 @@ func NewStageRoundRobinServiceCreateOK() *StageRoundRobinServiceCreateOK {
 A successful response.
 */
 type StageRoundRobinServiceCreateOK struct {
-	Payload *models.APIStageRoundRobin
+	Payload *models.APIStageRoundRobinResponse
 }
 
 func (o *StageRoundRobinServiceCreateOK) Error() string {
-	return fmt.Sprintf("[POST /api/v1/stage/roundrobin][%d] stageRoundRobinServiceCreateOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /api/v1/stage/rr][%d] stageRoundRobinServiceCreateOK  %+v", 200, o.Payload)
 }
 
-func (o *StageRoundRobinServiceCreateOK) GetPayload() *models.APIStageRoundRobin {
+func (o *StageRoundRobinServiceCreateOK) GetPayload() *models.APIStageRoundRobinResponse {
 	return o.Payload
 }
 
 func (o *StageRoundRobinServiceCreateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.APIStageRoundRobin)
+	o.Payload = new(models.APIStageRoundRobinResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -88,7 +88,7 @@ An unexpected error response.
 type StageRoundRobinServiceCreateDefault struct {
 	_statusCode int
 
-	Payload *models.RPCStatus
+	Payload *models.GooglerpcStatus
 }
 
 // Code gets the status code for the stage round robin service create default response
@@ -97,16 +97,16 @@ func (o *StageRoundRobinServiceCreateDefault) Code() int {
 }
 
 func (o *StageRoundRobinServiceCreateDefault) Error() string {
-	return fmt.Sprintf("[POST /api/v1/stage/roundrobin][%d] StageRoundRobinService_Create default  %+v", o._statusCode, o.Payload)
+	return fmt.Sprintf("[POST /api/v1/stage/rr][%d] StageRoundRobinService_Create default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *StageRoundRobinServiceCreateDefault) GetPayload() *models.RPCStatus {
+func (o *StageRoundRobinServiceCreateDefault) GetPayload() *models.GooglerpcStatus {
 	return o.Payload
 }
 
 func (o *StageRoundRobinServiceCreateDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.RPCStatus)
+	o.Payload = new(models.GooglerpcStatus)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

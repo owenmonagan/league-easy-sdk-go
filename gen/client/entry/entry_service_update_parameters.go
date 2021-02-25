@@ -63,9 +63,9 @@ for the entry service update operation typically these are written to a http.Req
 type EntryServiceUpdateParams struct {
 
 	/*Body*/
-	Body *models.APIEntryUpdateRequest
-	/*UUID*/
-	UUID string
+	Body *models.APIEntry
+	/*ID*/
+	ID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -106,25 +106,25 @@ func (o *EntryServiceUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithBody adds the body to the entry service update params
-func (o *EntryServiceUpdateParams) WithBody(body *models.APIEntryUpdateRequest) *EntryServiceUpdateParams {
+func (o *EntryServiceUpdateParams) WithBody(body *models.APIEntry) *EntryServiceUpdateParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the entry service update params
-func (o *EntryServiceUpdateParams) SetBody(body *models.APIEntryUpdateRequest) {
+func (o *EntryServiceUpdateParams) SetBody(body *models.APIEntry) {
 	o.Body = body
 }
 
-// WithUUID adds the uuid to the entry service update params
-func (o *EntryServiceUpdateParams) WithUUID(uuid string) *EntryServiceUpdateParams {
-	o.SetUUID(uuid)
+// WithID adds the id to the entry service update params
+func (o *EntryServiceUpdateParams) WithID(id string) *EntryServiceUpdateParams {
+	o.SetID(id)
 	return o
 }
 
-// SetUUID adds the uuid to the entry service update params
-func (o *EntryServiceUpdateParams) SetUUID(uuid string) {
-	o.UUID = uuid
+// SetID adds the id to the entry service update params
+func (o *EntryServiceUpdateParams) SetID(id string) {
+	o.ID = id
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -141,8 +141,8 @@ func (o *EntryServiceUpdateParams) WriteToRequest(r runtime.ClientRequest, reg s
 		}
 	}
 
-	// path param uuid
-	if err := r.SetPathParam("uuid", o.UUID); err != nil {
+	// path param id
+	if err := r.SetPathParam("id", o.ID); err != nil {
 		return err
 	}
 

@@ -51,20 +51,20 @@ func NewStageSingleEliminationServiceViewOK() *StageSingleEliminationServiceView
 A successful response.
 */
 type StageSingleEliminationServiceViewOK struct {
-	Payload *models.APIStageSingleElimination
+	Payload *models.APIStageSingleEliminationResponse
 }
 
 func (o *StageSingleEliminationServiceViewOK) Error() string {
-	return fmt.Sprintf("[GET /api/v1/stage/singleelimination/{uuid}][%d] stageSingleEliminationServiceViewOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /api/v1/stage/se/{id}][%d] stageSingleEliminationServiceViewOK  %+v", 200, o.Payload)
 }
 
-func (o *StageSingleEliminationServiceViewOK) GetPayload() *models.APIStageSingleElimination {
+func (o *StageSingleEliminationServiceViewOK) GetPayload() *models.APIStageSingleEliminationResponse {
 	return o.Payload
 }
 
 func (o *StageSingleEliminationServiceViewOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.APIStageSingleElimination)
+	o.Payload = new(models.APIStageSingleEliminationResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -88,7 +88,7 @@ An unexpected error response.
 type StageSingleEliminationServiceViewDefault struct {
 	_statusCode int
 
-	Payload *models.RPCStatus
+	Payload *models.GooglerpcStatus
 }
 
 // Code gets the status code for the stage single elimination service view default response
@@ -97,16 +97,16 @@ func (o *StageSingleEliminationServiceViewDefault) Code() int {
 }
 
 func (o *StageSingleEliminationServiceViewDefault) Error() string {
-	return fmt.Sprintf("[GET /api/v1/stage/singleelimination/{uuid}][%d] StageSingleEliminationService_View default  %+v", o._statusCode, o.Payload)
+	return fmt.Sprintf("[GET /api/v1/stage/se/{id}][%d] StageSingleEliminationService_View default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *StageSingleEliminationServiceViewDefault) GetPayload() *models.RPCStatus {
+func (o *StageSingleEliminationServiceViewDefault) GetPayload() *models.GooglerpcStatus {
 	return o.Payload
 }
 
 func (o *StageSingleEliminationServiceViewDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.RPCStatus)
+	o.Payload = new(models.GooglerpcStatus)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
