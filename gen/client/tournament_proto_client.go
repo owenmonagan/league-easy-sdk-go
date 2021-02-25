@@ -10,17 +10,10 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/owenmonagan/toureasy-sdk-go/gen/client/entry"
-	"github.com/owenmonagan/toureasy-sdk-go/gen/client/format_score"
-	"github.com/owenmonagan/toureasy-sdk-go/gen/client/game"
-	"github.com/owenmonagan/toureasy-sdk-go/gen/client/round"
-	"github.com/owenmonagan/toureasy-sdk-go/gen/client/round_robin"
-	"github.com/owenmonagan/toureasy-sdk-go/gen/client/score"
-	"github.com/owenmonagan/toureasy-sdk-go/gen/client/series"
-	"github.com/owenmonagan/toureasy-sdk-go/gen/client/series_format"
-	"github.com/owenmonagan/toureasy-sdk-go/gen/client/single_elimination"
-	"github.com/owenmonagan/toureasy-sdk-go/gen/client/tournament"
-	"github.com/owenmonagan/toureasy-sdk-go/gen/client/utility"
+	apiops "github.com/owenmonagan/toureasy-sdk-go/gen/client/api"
+	"github.com/owenmonagan/toureasy-sdk-go/gen/client/format"
+	"github.com/owenmonagan/toureasy-sdk-go/gen/client/stage"
+	"github.com/owenmonagan/toureasy-sdk-go/gen/client/utl"
 )
 
 // Default tournament proto HTTP client.
@@ -65,17 +58,10 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Tournament
 
 	cli := new(TournamentProto)
 	cli.Transport = transport
-	cli.Entry = entry.New(transport, formats)
-	cli.FormatScore = format_score.New(transport, formats)
-	cli.Game = game.New(transport, formats)
-	cli.Round = round.New(transport, formats)
-	cli.RoundRobin = round_robin.New(transport, formats)
-	cli.Score = score.New(transport, formats)
-	cli.Series = series.New(transport, formats)
-	cli.SeriesFormat = series_format.New(transport, formats)
-	cli.SingleElimination = single_elimination.New(transport, formats)
-	cli.Tournament = tournament.New(transport, formats)
-	cli.Utility = utility.New(transport, formats)
+	cli.API = apiops.New(transport, formats)
+	cli.Format = format.New(transport, formats)
+	cli.Stage = stage.New(transport, formats)
+	cli.Utl = utl.New(transport, formats)
 	return cli
 }
 
@@ -120,27 +106,13 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // TournamentProto is a client for tournament proto
 type TournamentProto struct {
-	Entry entry.ClientService
+	API apiops.ClientService
 
-	FormatScore format_score.ClientService
+	Format format.ClientService
 
-	Game game.ClientService
+	Stage stage.ClientService
 
-	Round round.ClientService
-
-	RoundRobin round_robin.ClientService
-
-	Score score.ClientService
-
-	Series series.ClientService
-
-	SeriesFormat series_format.ClientService
-
-	SingleElimination single_elimination.ClientService
-
-	Tournament tournament.ClientService
-
-	Utility utility.ClientService
+	Utl utl.ClientService
 
 	Transport runtime.ClientTransport
 }
@@ -148,15 +120,8 @@ type TournamentProto struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *TournamentProto) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
-	c.Entry.SetTransport(transport)
-	c.FormatScore.SetTransport(transport)
-	c.Game.SetTransport(transport)
-	c.Round.SetTransport(transport)
-	c.RoundRobin.SetTransport(transport)
-	c.Score.SetTransport(transport)
-	c.Series.SetTransport(transport)
-	c.SeriesFormat.SetTransport(transport)
-	c.SingleElimination.SetTransport(transport)
-	c.Tournament.SetTransport(transport)
-	c.Utility.SetTransport(transport)
+	c.API.SetTransport(transport)
+	c.Format.SetTransport(transport)
+	c.Stage.SetTransport(transport)
+	c.Utl.SetTransport(transport)
 }
