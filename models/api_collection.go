@@ -20,38 +20,38 @@ type APICollection string
 
 const (
 
-	// APICollectionTOURNAMENT captures enum value "TOURNAMENT"
-	APICollectionTOURNAMENT APICollection = "TOURNAMENT"
+	// APICollectionTournament captures enum value "tournament"
+	APICollectionTournament APICollection = "tournament"
 
-	// APICollectionRR captures enum value "RR"
-	APICollectionRR APICollection = "RR"
+	// APICollectionRr captures enum value "rr"
+	APICollectionRr APICollection = "rr"
 
-	// APICollectionSE captures enum value "SE"
-	APICollectionSE APICollection = "SE"
+	// APICollectionSe captures enum value "se"
+	APICollectionSe APICollection = "se"
 
-	// APICollectionGROUP captures enum value "GROUP"
-	APICollectionGROUP APICollection = "GROUP"
+	// APICollectionGroup captures enum value "group"
+	APICollectionGroup APICollection = "group"
 
-	// APICollectionROUND captures enum value "ROUND"
-	APICollectionROUND APICollection = "ROUND"
+	// APICollectionRound captures enum value "round"
+	APICollectionRound APICollection = "round"
 
-	// APICollectionSERIES captures enum value "SERIES"
-	APICollectionSERIES APICollection = "SERIES"
+	// APICollectionSeries captures enum value "series"
+	APICollectionSeries APICollection = "series"
 
-	// APICollectionGAME captures enum value "GAME"
-	APICollectionGAME APICollection = "GAME"
+	// APICollectionGame captures enum value "game"
+	APICollectionGame APICollection = "game"
 
-	// APICollectionENTRY captures enum value "ENTRY"
-	APICollectionENTRY APICollection = "ENTRY"
+	// APICollectionEntry captures enum value "entry"
+	APICollectionEntry APICollection = "entry"
 
-	// APICollectionSCORE captures enum value "SCORE"
-	APICollectionSCORE APICollection = "SCORE"
+	// APICollectionScore captures enum value "score"
+	APICollectionScore APICollection = "score"
 
-	// APICollectionFORMATSERIES captures enum value "FORMAT_SERIES"
-	APICollectionFORMATSERIES APICollection = "FORMAT_SERIES"
+	// APICollectionFormatSeries captures enum value "format_series"
+	APICollectionFormatSeries APICollection = "format_series"
 
-	// APICollectionFORMATSCORE captures enum value "FORMAT_SCORE"
-	APICollectionFORMATSCORE APICollection = "FORMAT_SCORE"
+	// APICollectionFormatScore captures enum value "format_score"
+	APICollectionFormatScore APICollection = "format_score"
 )
 
 // for schema
@@ -59,7 +59,7 @@ var apiCollectionEnum []interface{}
 
 func init() {
 	var res []APICollection
-	if err := json.Unmarshal([]byte(`["TOURNAMENT","RR","SE","GROUP","ROUND","SERIES","GAME","ENTRY","SCORE","FORMAT_SERIES","FORMAT_SCORE"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["tournament","rr","se","group","round","series","game","entry","score","format_series","format_score"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
