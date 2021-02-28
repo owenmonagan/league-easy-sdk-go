@@ -328,7 +328,7 @@ func (a *Client) FormatScoreServiceUpdate(params *FormatScoreServiceUpdateParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "FormatScoreService_Update",
 		Method:             "PATCH",
-		PathPattern:        "/api/v1/format/score/{id}",
+		PathPattern:        "/api/v1/format/score/{object.id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -468,7 +468,7 @@ func (a *Client) FormatSeriesServiceUpdate(params *FormatSeriesServiceUpdatePara
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "FormatSeriesService_Update",
 		Method:             "PATCH",
-		PathPattern:        "/api/v1/format/series/{id}",
+		PathPattern:        "/api/v1/format/series/{object.id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -993,7 +993,7 @@ func (a *Client) StageRoundRobinServiceUpdate(params *StageRoundRobinServiceUpda
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "StageRoundRobinService_Update",
 		Method:             "PATCH",
-		PathPattern:        "/api/v1/stage/rr/{id}",
+		PathPattern:        "/api/v1/stage/rr/{object.id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1168,7 +1168,7 @@ func (a *Client) StageSingleEliminationServiceUpdate(params *StageSingleEliminat
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "StageSingleEliminationService_Update",
 		Method:             "PATCH",
-		PathPattern:        "/api/v1/stage/se/{id}",
+		PathPattern:        "/api/v1/stage/se/{object.id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

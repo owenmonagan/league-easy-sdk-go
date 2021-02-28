@@ -55,7 +55,7 @@ type StageSingleEliminationServiceUpdateOK struct {
 }
 
 func (o *StageSingleEliminationServiceUpdateOK) Error() string {
-	return fmt.Sprintf("[PATCH /api/v1/stage/se/{id}][%d] stageSingleEliminationServiceUpdateOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /api/v1/stage/se/{object.id}][%d] stageSingleEliminationServiceUpdateOK  %+v", 200, o.Payload)
 }
 
 func (o *StageSingleEliminationServiceUpdateOK) GetPayload() *models.APIStageSingleEliminationResponse {
@@ -97,7 +97,7 @@ func (o *StageSingleEliminationServiceUpdateDefault) Code() int {
 }
 
 func (o *StageSingleEliminationServiceUpdateDefault) Error() string {
-	return fmt.Sprintf("[PATCH /api/v1/stage/se/{id}][%d] StageSingleEliminationService_Update default  %+v", o._statusCode, o.Payload)
+	return fmt.Sprintf("[PATCH /api/v1/stage/se/{object.id}][%d] StageSingleEliminationService_Update default  %+v", o._statusCode, o.Payload)
 }
 
 func (o *StageSingleEliminationServiceUpdateDefault) GetPayload() *models.GooglerpcStatus {

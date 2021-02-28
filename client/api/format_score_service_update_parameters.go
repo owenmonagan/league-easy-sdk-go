@@ -64,8 +64,8 @@ type FormatScoreServiceUpdateParams struct {
 
 	/*Body*/
 	Body *models.APIFormatScoreRequestBody
-	/*ID*/
-	ID string
+	/*ObjectID*/
+	ObjectID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -116,15 +116,15 @@ func (o *FormatScoreServiceUpdateParams) SetBody(body *models.APIFormatScoreRequ
 	o.Body = body
 }
 
-// WithID adds the id to the format score service update params
-func (o *FormatScoreServiceUpdateParams) WithID(id string) *FormatScoreServiceUpdateParams {
-	o.SetID(id)
+// WithObjectID adds the objectID to the format score service update params
+func (o *FormatScoreServiceUpdateParams) WithObjectID(objectID string) *FormatScoreServiceUpdateParams {
+	o.SetObjectID(objectID)
 	return o
 }
 
-// SetID adds the id to the format score service update params
-func (o *FormatScoreServiceUpdateParams) SetID(id string) {
-	o.ID = id
+// SetObjectID adds the objectId to the format score service update params
+func (o *FormatScoreServiceUpdateParams) SetObjectID(objectID string) {
+	o.ObjectID = objectID
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -141,8 +141,8 @@ func (o *FormatScoreServiceUpdateParams) WriteToRequest(r runtime.ClientRequest,
 		}
 	}
 
-	// path param id
-	if err := r.SetPathParam("id", o.ID); err != nil {
+	// path param object.id
+	if err := r.SetPathParam("object.id", o.ObjectID); err != nil {
 		return err
 	}
 

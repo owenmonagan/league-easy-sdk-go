@@ -25,10 +25,10 @@ type APIQuery struct {
 	EntryIds []string `json:"entryIds"`
 
 	// inbound of
-	InboundOf []*APIReference `json:"inboundOf"`
+	InboundOf *APIAllReferences `json:"inboundOf,omitempty"`
 
 	// outbound of
-	OutboundOf []*APIReference `json:"outboundOf"`
+	OutboundOf *APIAllReferences `json:"outboundOf,omitempty"`
 
 	// statuses
 	Statuses []APIStatusOptions `json:"statuses"`
@@ -65,20 +65,13 @@ func (m *APIQuery) validateInboundOf(formats strfmt.Registry) error {
 		return nil
 	}
 
-	for i := 0; i < len(m.InboundOf); i++ {
-		if swag.IsZero(m.InboundOf[i]) { // not required
-			continue
-		}
-
-		if m.InboundOf[i] != nil {
-			if err := m.InboundOf[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("inboundOf" + "." + strconv.Itoa(i))
-				}
-				return err
+	if m.InboundOf != nil {
+		if err := m.InboundOf.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("inboundOf")
 			}
+			return err
 		}
-
 	}
 
 	return nil
@@ -90,20 +83,13 @@ func (m *APIQuery) validateOutboundOf(formats strfmt.Registry) error {
 		return nil
 	}
 
-	for i := 0; i < len(m.OutboundOf); i++ {
-		if swag.IsZero(m.OutboundOf[i]) { // not required
-			continue
-		}
-
-		if m.OutboundOf[i] != nil {
-			if err := m.OutboundOf[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("outboundOf" + "." + strconv.Itoa(i))
-				}
-				return err
+	if m.OutboundOf != nil {
+		if err := m.OutboundOf.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("outboundOf")
 			}
+			return err
 		}
-
 	}
 
 	return nil

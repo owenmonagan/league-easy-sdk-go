@@ -16,9 +16,6 @@ import (
 // swagger:model apiStageRoundRobinRequestBody
 type APIStageRoundRobinRequestBody struct {
 
-	// id
-	ID string `json:"id,omitempty"`
-
 	// object
 	Object *APIStageRoundRobin `json:"object,omitempty"`
 

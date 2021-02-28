@@ -16,9 +16,6 @@ import (
 // swagger:model apiStageSingleEliminationRequestBody
 type APIStageSingleEliminationRequestBody struct {
 
-	// id
-	ID string `json:"id,omitempty"`
-
 	// object
 	Object *APIStageSingleElimination `json:"object,omitempty"`
 

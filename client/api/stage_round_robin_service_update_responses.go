@@ -55,7 +55,7 @@ type StageRoundRobinServiceUpdateOK struct {
 }
 
 func (o *StageRoundRobinServiceUpdateOK) Error() string {
-	return fmt.Sprintf("[PATCH /api/v1/stage/rr/{id}][%d] stageRoundRobinServiceUpdateOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /api/v1/stage/rr/{object.id}][%d] stageRoundRobinServiceUpdateOK  %+v", 200, o.Payload)
 }
 
 func (o *StageRoundRobinServiceUpdateOK) GetPayload() *models.APIStageRoundRobinResponse {
@@ -97,7 +97,7 @@ func (o *StageRoundRobinServiceUpdateDefault) Code() int {
 }
 
 func (o *StageRoundRobinServiceUpdateDefault) Error() string {
-	return fmt.Sprintf("[PATCH /api/v1/stage/rr/{id}][%d] StageRoundRobinService_Update default  %+v", o._statusCode, o.Payload)
+	return fmt.Sprintf("[PATCH /api/v1/stage/rr/{object.id}][%d] StageRoundRobinService_Update default  %+v", o._statusCode, o.Payload)
 }
 
 func (o *StageRoundRobinServiceUpdateDefault) GetPayload() *models.GooglerpcStatus {

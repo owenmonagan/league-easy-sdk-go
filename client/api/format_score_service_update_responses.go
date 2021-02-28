@@ -55,7 +55,7 @@ type FormatScoreServiceUpdateOK struct {
 }
 
 func (o *FormatScoreServiceUpdateOK) Error() string {
-	return fmt.Sprintf("[PATCH /api/v1/format/score/{id}][%d] formatScoreServiceUpdateOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /api/v1/format/score/{object.id}][%d] formatScoreServiceUpdateOK  %+v", 200, o.Payload)
 }
 
 func (o *FormatScoreServiceUpdateOK) GetPayload() *models.APIFormatScoreResponse {
@@ -97,7 +97,7 @@ func (o *FormatScoreServiceUpdateDefault) Code() int {
 }
 
 func (o *FormatScoreServiceUpdateDefault) Error() string {
-	return fmt.Sprintf("[PATCH /api/v1/format/score/{id}][%d] FormatScoreService_Update default  %+v", o._statusCode, o.Payload)
+	return fmt.Sprintf("[PATCH /api/v1/format/score/{object.id}][%d] FormatScoreService_Update default  %+v", o._statusCode, o.Payload)
 }
 
 func (o *FormatScoreServiceUpdateDefault) GetPayload() *models.GooglerpcStatus {

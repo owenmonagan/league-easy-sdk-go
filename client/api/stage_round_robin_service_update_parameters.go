@@ -64,8 +64,8 @@ type StageRoundRobinServiceUpdateParams struct {
 
 	/*Body*/
 	Body *models.APIStageRoundRobinRequestBody
-	/*ID*/
-	ID string
+	/*ObjectID*/
+	ObjectID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -116,15 +116,15 @@ func (o *StageRoundRobinServiceUpdateParams) SetBody(body *models.APIStageRoundR
 	o.Body = body
 }
 
-// WithID adds the id to the stage round robin service update params
-func (o *StageRoundRobinServiceUpdateParams) WithID(id string) *StageRoundRobinServiceUpdateParams {
-	o.SetID(id)
+// WithObjectID adds the objectID to the stage round robin service update params
+func (o *StageRoundRobinServiceUpdateParams) WithObjectID(objectID string) *StageRoundRobinServiceUpdateParams {
+	o.SetObjectID(objectID)
 	return o
 }
 
-// SetID adds the id to the stage round robin service update params
-func (o *StageRoundRobinServiceUpdateParams) SetID(id string) {
-	o.ID = id
+// SetObjectID adds the objectId to the stage round robin service update params
+func (o *StageRoundRobinServiceUpdateParams) SetObjectID(objectID string) {
+	o.ObjectID = objectID
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -141,8 +141,8 @@ func (o *StageRoundRobinServiceUpdateParams) WriteToRequest(r runtime.ClientRequ
 		}
 	}
 
-	// path param id
-	if err := r.SetPathParam("id", o.ID); err != nil {
+	// path param object.id
+	if err := r.SetPathParam("object.id", o.ObjectID); err != nil {
 		return err
 	}
 

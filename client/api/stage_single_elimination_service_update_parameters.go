@@ -64,8 +64,8 @@ type StageSingleEliminationServiceUpdateParams struct {
 
 	/*Body*/
 	Body *models.APIStageSingleEliminationRequestBody
-	/*ID*/
-	ID string
+	/*ObjectID*/
+	ObjectID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -116,15 +116,15 @@ func (o *StageSingleEliminationServiceUpdateParams) SetBody(body *models.APIStag
 	o.Body = body
 }
 
-// WithID adds the id to the stage single elimination service update params
-func (o *StageSingleEliminationServiceUpdateParams) WithID(id string) *StageSingleEliminationServiceUpdateParams {
-	o.SetID(id)
+// WithObjectID adds the objectID to the stage single elimination service update params
+func (o *StageSingleEliminationServiceUpdateParams) WithObjectID(objectID string) *StageSingleEliminationServiceUpdateParams {
+	o.SetObjectID(objectID)
 	return o
 }
 
-// SetID adds the id to the stage single elimination service update params
-func (o *StageSingleEliminationServiceUpdateParams) SetID(id string) {
-	o.ID = id
+// SetObjectID adds the objectId to the stage single elimination service update params
+func (o *StageSingleEliminationServiceUpdateParams) SetObjectID(objectID string) {
+	o.ObjectID = objectID
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -141,8 +141,8 @@ func (o *StageSingleEliminationServiceUpdateParams) WriteToRequest(r runtime.Cli
 		}
 	}
 
-	// path param id
-	if err := r.SetPathParam("id", o.ID); err != nil {
+	// path param object.id
+	if err := r.SetPathParam("object.id", o.ObjectID); err != nil {
 		return err
 	}
 

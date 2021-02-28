@@ -64,8 +64,8 @@ type FormatSeriesServiceUpdateParams struct {
 
 	/*Body*/
 	Body *models.APIFormatSeriesRequestBody
-	/*ID*/
-	ID string
+	/*ObjectID*/
+	ObjectID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -116,15 +116,15 @@ func (o *FormatSeriesServiceUpdateParams) SetBody(body *models.APIFormatSeriesRe
 	o.Body = body
 }
 
-// WithID adds the id to the format series service update params
-func (o *FormatSeriesServiceUpdateParams) WithID(id string) *FormatSeriesServiceUpdateParams {
-	o.SetID(id)
+// WithObjectID adds the objectID to the format series service update params
+func (o *FormatSeriesServiceUpdateParams) WithObjectID(objectID string) *FormatSeriesServiceUpdateParams {
+	o.SetObjectID(objectID)
 	return o
 }
 
-// SetID adds the id to the format series service update params
-func (o *FormatSeriesServiceUpdateParams) SetID(id string) {
-	o.ID = id
+// SetObjectID adds the objectId to the format series service update params
+func (o *FormatSeriesServiceUpdateParams) SetObjectID(objectID string) {
+	o.ObjectID = objectID
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -141,8 +141,8 @@ func (o *FormatSeriesServiceUpdateParams) WriteToRequest(r runtime.ClientRequest
 		}
 	}
 
-	// path param id
-	if err := r.SetPathParam("id", o.ID); err != nil {
+	// path param object.id
+	if err := r.SetPathParam("object.id", o.ObjectID); err != nil {
 		return err
 	}
 

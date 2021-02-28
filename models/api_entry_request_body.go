@@ -16,9 +16,6 @@ import (
 // swagger:model apiEntryRequestBody
 type APIEntryRequestBody struct {
 
-	// id
-	ID string `json:"id,omitempty"`
-
 	// object
 	Object *APIEntry `json:"object,omitempty"`
 

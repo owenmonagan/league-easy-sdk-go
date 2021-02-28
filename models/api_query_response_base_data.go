@@ -6,8 +6,6 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"strconv"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -19,7 +17,7 @@ import (
 type APIQueryResponseBaseData struct {
 
 	// inbound has
-	InboundHas []*APIReference `json:"inboundHas"`
+	InboundHas *APIAllReferences `json:"inboundHas,omitempty"`
 }
 
 // Validate validates this api query response base data
@@ -42,20 +40,13 @@ func (m *APIQueryResponseBaseData) validateInboundHas(formats strfmt.Registry) e
 		return nil
 	}
 
-	for i := 0; i < len(m.InboundHas); i++ {
-		if swag.IsZero(m.InboundHas[i]) { // not required
-			continue
-		}
-
-		if m.InboundHas[i] != nil {
-			if err := m.InboundHas[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("inboundHas" + "." + strconv.Itoa(i))
-				}
-				return err
+	if m.InboundHas != nil {
+		if err := m.InboundHas.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("inboundHas")
 			}
+			return err
 		}
-
 	}
 
 	return nil

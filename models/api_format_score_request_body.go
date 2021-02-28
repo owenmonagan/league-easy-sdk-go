@@ -6,8 +6,6 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"strconv"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -19,10 +17,7 @@ import (
 type APIFormatScoreRequestBody struct {
 
 	// has format
-	HasFormat []*APIReference `json:"hasFormat"`
-
-	// id
-	ID string `json:"id,omitempty"`
+	HasFormat *APIAllReferences `json:"hasFormat,omitempty"`
 
 	// object
 	Object *APIFormatScore `json:"object,omitempty"`
@@ -55,20 +50,13 @@ func (m *APIFormatScoreRequestBody) validateHasFormat(formats strfmt.Registry) e
 		return nil
 	}
 
-	for i := 0; i < len(m.HasFormat); i++ {
-		if swag.IsZero(m.HasFormat[i]) { // not required
-			continue
-		}
-
-		if m.HasFormat[i] != nil {
-			if err := m.HasFormat[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("hasFormat" + "." + strconv.Itoa(i))
-				}
-				return err
+	if m.HasFormat != nil {
+		if err := m.HasFormat.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hasFormat")
 			}
+			return err
 		}
-
 	}
 
 	return nil
