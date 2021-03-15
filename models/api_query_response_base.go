@@ -24,6 +24,9 @@ type APIQueryResponseBase struct {
 	// score list
 	ScoreList []*APIPosition `json:"scoreList"`
 
+	// sequence
+	Sequence []*APISequence `json:"sequence"`
+
 	// status
 	Status *APIStatus `json:"status,omitempty"`
 }
@@ -37,6 +40,10 @@ func (m *APIQueryResponseBase) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateScoreList(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSequence(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -90,6 +97,31 @@ func (m *APIQueryResponseBase) validateScoreList(formats strfmt.Registry) error 
 			if err := m.ScoreList[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("scoreList" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *APIQueryResponseBase) validateSequence(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Sequence) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Sequence); i++ {
+		if swag.IsZero(m.Sequence[i]) { // not required
+			continue
+		}
+
+		if m.Sequence[i] != nil {
+			if err := m.Sequence[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("sequence" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
