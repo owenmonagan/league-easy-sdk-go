@@ -62,6 +62,8 @@ type StageSingleEliminationServiceDeleteParams struct {
 
 	/*ID*/
 	ID string
+	/*TournamentID*/
+	TournamentID *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -112,6 +114,17 @@ func (o *StageSingleEliminationServiceDeleteParams) SetID(id string) {
 	o.ID = id
 }
 
+// WithTournamentID adds the tournamentID to the stage single elimination service delete params
+func (o *StageSingleEliminationServiceDeleteParams) WithTournamentID(tournamentID *string) *StageSingleEliminationServiceDeleteParams {
+	o.SetTournamentID(tournamentID)
+	return o
+}
+
+// SetTournamentID adds the tournamentId to the stage single elimination service delete params
+func (o *StageSingleEliminationServiceDeleteParams) SetTournamentID(tournamentID *string) {
+	o.TournamentID = tournamentID
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *StageSingleEliminationServiceDeleteParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -123,6 +136,22 @@ func (o *StageSingleEliminationServiceDeleteParams) WriteToRequest(r runtime.Cli
 	// path param id
 	if err := r.SetPathParam("id", o.ID); err != nil {
 		return err
+	}
+
+	if o.TournamentID != nil {
+
+		// query param tournamentId
+		var qrTournamentID string
+		if o.TournamentID != nil {
+			qrTournamentID = *o.TournamentID
+		}
+		qTournamentID := qrTournamentID
+		if qTournamentID != "" {
+			if err := r.SetQueryParam("tournamentId", qTournamentID); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if len(res) > 0 {

@@ -62,6 +62,8 @@ type StageRoundRobinServiceDeleteParams struct {
 
 	/*ID*/
 	ID string
+	/*TournamentID*/
+	TournamentID *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -112,6 +114,17 @@ func (o *StageRoundRobinServiceDeleteParams) SetID(id string) {
 	o.ID = id
 }
 
+// WithTournamentID adds the tournamentID to the stage round robin service delete params
+func (o *StageRoundRobinServiceDeleteParams) WithTournamentID(tournamentID *string) *StageRoundRobinServiceDeleteParams {
+	o.SetTournamentID(tournamentID)
+	return o
+}
+
+// SetTournamentID adds the tournamentId to the stage round robin service delete params
+func (o *StageRoundRobinServiceDeleteParams) SetTournamentID(tournamentID *string) {
+	o.TournamentID = tournamentID
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *StageRoundRobinServiceDeleteParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -123,6 +136,22 @@ func (o *StageRoundRobinServiceDeleteParams) WriteToRequest(r runtime.ClientRequ
 	// path param id
 	if err := r.SetPathParam("id", o.ID); err != nil {
 		return err
+	}
+
+	if o.TournamentID != nil {
+
+		// query param tournamentId
+		var qrTournamentID string
+		if o.TournamentID != nil {
+			qrTournamentID = *o.TournamentID
+		}
+		qTournamentID := qrTournamentID
+		if qTournamentID != "" {
+			if err := r.SetQueryParam("tournamentId", qTournamentID); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if len(res) > 0 {

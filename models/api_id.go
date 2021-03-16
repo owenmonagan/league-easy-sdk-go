@@ -17,6 +17,9 @@ type APIID struct {
 
 	// id
 	ID string `json:"id,omitempty"`
+
+	// tournament Id
+	TournamentID string `json:"tournamentId,omitempty"`
 }
 
 // Validate validates this api ID

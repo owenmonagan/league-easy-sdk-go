@@ -62,6 +62,8 @@ type GroupServiceViewParams struct {
 
 	/*ID*/
 	ID string
+	/*TournamentID*/
+	TournamentID *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -112,6 +114,17 @@ func (o *GroupServiceViewParams) SetID(id string) {
 	o.ID = id
 }
 
+// WithTournamentID adds the tournamentID to the group service view params
+func (o *GroupServiceViewParams) WithTournamentID(tournamentID *string) *GroupServiceViewParams {
+	o.SetTournamentID(tournamentID)
+	return o
+}
+
+// SetTournamentID adds the tournamentId to the group service view params
+func (o *GroupServiceViewParams) SetTournamentID(tournamentID *string) {
+	o.TournamentID = tournamentID
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GroupServiceViewParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -123,6 +136,22 @@ func (o *GroupServiceViewParams) WriteToRequest(r runtime.ClientRequest, reg str
 	// path param id
 	if err := r.SetPathParam("id", o.ID); err != nil {
 		return err
+	}
+
+	if o.TournamentID != nil {
+
+		// query param tournamentId
+		var qrTournamentID string
+		if o.TournamentID != nil {
+			qrTournamentID = *o.TournamentID
+		}
+		qTournamentID := qrTournamentID
+		if qTournamentID != "" {
+			if err := r.SetQueryParam("tournamentId", qTournamentID); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if len(res) > 0 {
