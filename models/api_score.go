@@ -11,7 +11,6 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // APIScore api score
@@ -25,9 +24,6 @@ type APIScore struct {
 	// id
 	ID string `json:"id,omitempty"`
 
-	// rows
-	Rows map[string]APIScoreRow `json:"rows,omitempty"`
-
 	// table
 	Table []*APIScoreRow `json:"table"`
 
@@ -38,10 +34,6 @@ type APIScore struct {
 // Validate validates this api score
 func (m *APIScore) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateRows(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateTable(formats); err != nil {
 		res = append(res, err)
@@ -54,28 +46,6 @@ func (m *APIScore) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *APIScore) validateRows(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Rows) { // not required
-		return nil
-	}
-
-	for k := range m.Rows {
-
-		if err := validate.Required("rows"+"."+k, "body", m.Rows[k]); err != nil {
-			return err
-		}
-		if val, ok := m.Rows[k]; ok {
-			if err := val.Validate(formats); err != nil {
-				return err
-			}
-		}
-
-	}
-
 	return nil
 }
 
