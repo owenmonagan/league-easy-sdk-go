@@ -18,6 +18,9 @@ import (
 // swagger:model apiQueryResponseBase
 type APIQueryResponseBase struct {
 
+	// entries count
+	EntriesCount int32 `json:"entriesCount,omitempty"`
+
 	// entry list
 	EntryList []*APIPosition `json:"entryList"`
 
