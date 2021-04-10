@@ -49,13 +49,19 @@ type ClientService interface {
 
 	FormatSeriesServiceView(params *FormatSeriesServiceViewParams) (*FormatSeriesServiceViewOK, error)
 
+	GameServiceCompute(params *GameServiceComputeParams) (*GameServiceComputeOK, error)
+
 	GameServiceQuery(params *GameServiceQueryParams) (*GameServiceQueryOK, error)
 
 	GameServiceView(params *GameServiceViewParams) (*GameServiceViewOK, error)
 
+	GroupServiceCompute(params *GroupServiceComputeParams) (*GroupServiceComputeOK, error)
+
 	GroupServiceQuery(params *GroupServiceQueryParams) (*GroupServiceQueryOK, error)
 
 	GroupServiceView(params *GroupServiceViewParams) (*GroupServiceViewOK, error)
+
+	RoundServiceCompute(params *RoundServiceComputeParams) (*RoundServiceComputeOK, error)
 
 	RoundServiceQuery(params *RoundServiceQueryParams) (*RoundServiceQueryOK, error)
 
@@ -65,9 +71,13 @@ type ClientService interface {
 
 	ScoreServiceView(params *ScoreServiceViewParams) (*ScoreServiceViewOK, error)
 
+	SeriesServiceCompute(params *SeriesServiceComputeParams) (*SeriesServiceComputeOK, error)
+
 	SeriesServiceQuery(params *SeriesServiceQueryParams) (*SeriesServiceQueryOK, error)
 
 	SeriesServiceView(params *SeriesServiceViewParams) (*SeriesServiceViewOK, error)
+
+	StageRoundRobinServiceCompute(params *StageRoundRobinServiceComputeParams) (*StageRoundRobinServiceComputeOK, error)
 
 	StageRoundRobinServiceCreate(params *StageRoundRobinServiceCreateParams) (*StageRoundRobinServiceCreateOK, error)
 
@@ -78,6 +88,8 @@ type ClientService interface {
 	StageRoundRobinServiceUpdate(params *StageRoundRobinServiceUpdateParams) (*StageRoundRobinServiceUpdateOK, error)
 
 	StageRoundRobinServiceView(params *StageRoundRobinServiceViewParams) (*StageRoundRobinServiceViewOK, error)
+
+	StageSingleEliminationServiceCompute(params *StageSingleEliminationServiceComputeParams) (*StageSingleEliminationServiceComputeOK, error)
 
 	StageSingleEliminationServiceCreate(params *StageSingleEliminationServiceCreateParams) (*StageSingleEliminationServiceCreateOK, error)
 
@@ -525,6 +537,41 @@ func (a *Client) FormatSeriesServiceView(params *FormatSeriesServiceViewParams) 
 }
 
 /*
+  GameServiceCompute computes the game
+
+  generates and updates game structures
+*/
+func (a *Client) GameServiceCompute(params *GameServiceComputeParams) (*GameServiceComputeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGameServiceComputeParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GameService_Compute",
+		Method:             "POST",
+		PathPattern:        "/api/v1/game/compute",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GameServiceComputeReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GameServiceComputeOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*GameServiceComputeDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
   GameServiceQuery queries for game
 
   Query for game
@@ -595,6 +642,41 @@ func (a *Client) GameServiceView(params *GameServiceViewParams) (*GameServiceVie
 }
 
 /*
+  GroupServiceCompute computes the group
+
+  generates and updates group structures
+*/
+func (a *Client) GroupServiceCompute(params *GroupServiceComputeParams) (*GroupServiceComputeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGroupServiceComputeParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GroupService_Compute",
+		Method:             "POST",
+		PathPattern:        "/api/v1/group/compute",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GroupServiceComputeReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GroupServiceComputeOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*GroupServiceComputeDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
   GroupServiceQuery queries for group
 
   Query for group
@@ -661,6 +743,41 @@ func (a *Client) GroupServiceView(params *GroupServiceViewParams) (*GroupService
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*GroupServiceViewDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+  RoundServiceCompute computes the round
+
+  generates and updates round structures
+*/
+func (a *Client) RoundServiceCompute(params *RoundServiceComputeParams) (*RoundServiceComputeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRoundServiceComputeParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RoundService_Compute",
+		Method:             "POST",
+		PathPattern:        "/api/v1/round/compute",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RoundServiceComputeReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RoundServiceComputeOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*RoundServiceComputeDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
@@ -805,6 +922,41 @@ func (a *Client) ScoreServiceView(params *ScoreServiceViewParams) (*ScoreService
 }
 
 /*
+  SeriesServiceCompute computes the series
+
+  generates and updates series structures
+*/
+func (a *Client) SeriesServiceCompute(params *SeriesServiceComputeParams) (*SeriesServiceComputeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSeriesServiceComputeParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "SeriesService_Compute",
+		Method:             "POST",
+		PathPattern:        "/api/v1/series/compute",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SeriesServiceComputeReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SeriesServiceComputeOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*SeriesServiceComputeDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
   SeriesServiceQuery queries for series
 
   Query for series
@@ -871,6 +1023,41 @@ func (a *Client) SeriesServiceView(params *SeriesServiceViewParams) (*SeriesServ
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*SeriesServiceViewDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+  StageRoundRobinServiceCompute computes the round robin stage
+
+  generates and updates round robin stage structures
+*/
+func (a *Client) StageRoundRobinServiceCompute(params *StageRoundRobinServiceComputeParams) (*StageRoundRobinServiceComputeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewStageRoundRobinServiceComputeParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "StageRoundRobinService_Compute",
+		Method:             "POST",
+		PathPattern:        "/api/v1/stage/rr/compute",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &StageRoundRobinServiceComputeReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*StageRoundRobinServiceComputeOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*StageRoundRobinServiceComputeDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
@@ -1046,6 +1233,41 @@ func (a *Client) StageRoundRobinServiceView(params *StageRoundRobinServiceViewPa
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*StageRoundRobinServiceViewDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+  StageSingleEliminationServiceCompute computes the single elimination stage
+
+  generates and updates single elimination stage structures
+*/
+func (a *Client) StageSingleEliminationServiceCompute(params *StageSingleEliminationServiceComputeParams) (*StageSingleEliminationServiceComputeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewStageSingleEliminationServiceComputeParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "StageSingleEliminationService_Compute",
+		Method:             "POST",
+		PathPattern:        "/api/v1/stage/se/compute",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &StageSingleEliminationServiceComputeReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*StageSingleEliminationServiceComputeOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*StageSingleEliminationServiceComputeDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
