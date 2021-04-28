@@ -18,6 +18,9 @@ import (
 // swagger:model apiStageFromReferences
 type APIStageFromReferences struct {
 
+	// entries by position
+	EntriesByPosition []int32 `json:"entriesByPosition"`
+
 	// stage rr ids
 	StageRrIds []*APIEdge `json:"stageRrIds"`
 
