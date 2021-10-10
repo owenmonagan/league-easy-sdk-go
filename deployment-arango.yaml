@@ -1,0 +1,26 @@
+apiVersion: "database.arangodb.com/v1alpha"
+kind: "ArangoDeployment"
+metadata:
+  name: {{ include "toureasy.fullname.arangodb" . }}
+spec:
+  mode: Cluster
+  environment: Production
+  agents:
+    count: 3
+    args:
+      - --log.level=debug
+    resources:
+      requests:
+        storage: 8Gi
+    storageClassName: standard
+  tls:
+    caSecretName: "None"
+  dbservers:
+    count: 3
+    resources:
+      requests:
+        storage: 80Gi
+    storageClassName: standard
+  coordinators:
+    count: 3
+  image: "arangodb/arangodb:3.6.5"
