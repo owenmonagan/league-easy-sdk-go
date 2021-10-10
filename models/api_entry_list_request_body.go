@@ -21,6 +21,9 @@ type APIEntryListRequestBody struct {
 	// list
 	List []*APIEntryRequestBody `json:"list"`
 
+	// refs
+	Refs *APIAllReferences `json:"refs,omitempty"`
+
 	// tournament Id
 	TournamentID string `json:"tournamentId,omitempty"`
 }
@@ -30,6 +33,10 @@ func (m *APIEntryListRequestBody) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateList(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRefs(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -59,6 +66,24 @@ func (m *APIEntryListRequestBody) validateList(formats strfmt.Registry) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *APIEntryListRequestBody) validateRefs(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Refs) { // not required
+		return nil
+	}
+
+	if m.Refs != nil {
+		if err := m.Refs.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("refs")
+			}
+			return err
+		}
 	}
 
 	return nil

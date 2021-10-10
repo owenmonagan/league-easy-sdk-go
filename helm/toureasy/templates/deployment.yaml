@@ -32,11 +32,9 @@ spec:
             - name: ARANGODB_PASSWORD
               value: ""
             - name: ARANGODB_ENDPOINT
-              value: "{{ include "toureasy.arangodb.url" . }}"
+              value: "http://arangodb-ea.arangodb.svc.cluster.local:8529"
             - name: ARANGODB_DATABASE_NAME
               value: "tournaments"
-            - name: JWT_SECRET
-              value: "some-secret-which-is-over-64-chars-long-but-is-this-long-enough?"
             - name: SERVE_HTTP
               value: "true"
           ports:
